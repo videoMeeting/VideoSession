@@ -1,0 +1,32 @@
+//
+// Prefix header for all source files of the 'VideoSession' target in the 'VideoSession' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+// 加载图片
+#define LOADIMAGE(PATH,TYPE) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:PATH ofType:TYPE]]
+// 创建TabBar集合
+#define CREATE_TABARITEM(TITLE,PATH,TAG) [[[UITabBarItem alloc] initWithTitle:TITLE image:PATH tag:TAG] autorelease]
+// 创建导航视图控制器
+#define CREATE_NAVIGATION(CONTROLLER) [[[UINavigationController alloc] initWithRootViewController:CONTROLLER] autorelease]
+// 设置ARBG
+#define COLOR_WITH_ARGB(R,G,B,A) [UIColor colorWithRed:R / 255.0 green:G / 255.0 blue:B / 255.0 alpha:A]
+// 清空颜色
+#define CLEARCOLOR [UIColor clearColor]
+// 设置图像为填充色
+#define COLOR_WITH_IMAGE(PATH,TYPE) [UIColor colorWithPatternImage:LOADIMAGE(PATH,TYPE)]
+// 设置字体大小
+#define FONT_WITH_SIZE(SIZE) [UIFont systemFontOfSize:SIZE]
+// 创建导航条自定义按钮
+#define CREATE_BARITEM_WITH_CUSTOMVIEW(VIEW) [[[UIBarButtonItem alloc] initWithCustomView:VIEW] autorelease]
+// 创建tabBarButton
+#define CREATE_TABBARBUTTON(N,S,I) [[[MyTabBarItem alloc] initWithNormalImage:N selectedImage:S index:I] autorelease]

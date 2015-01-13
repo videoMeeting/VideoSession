@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditGroupViewController">
+            <connections>
+                <outlet property="groupName" destination="15" id="72"/>
+                <outlet property="toolBar" destination="9" id="14"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <items/>
+                </toolbar>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15">
+                    <rect key="frame" x="112" y="96" width="441" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="群组名：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                    <rect key="frame" x="36" y="101" width="72" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="OGa-XC-nqx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="15" firstAttribute="top" secondItem="1" secondAttribute="top" constant="96" id="0qy-pN-hw7"/>
+                <constraint firstItem="22" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="36" id="7V7-6A-BlS"/>
+                <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" id="LZZ-Ey-e2w"/>
+                <constraint firstItem="15" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="4" id="LgW-ET-D3f"/>
+                <constraint firstAttribute="trailing" secondItem="15" secondAttribute="trailing" constant="47" id="XyG-UU-DWJ"/>
+                <constraint firstItem="22" firstAttribute="centerY" secondItem="15" secondAttribute="centerY" id="ZKA-Tc-ZZH"/>
+                <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" id="cFa-nW-71N"/>
+                <constraint firstItem="9" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="jVj-bl-gZD"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="412" y="209"/>
+        </view>
+    </objects>
+</document>

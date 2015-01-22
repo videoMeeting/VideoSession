@@ -65,7 +65,7 @@ static CameraCapture* theServer;
         [_session addOutput:_output];
         
         // create an encoder
-        _encoder = [AVEncoder encoderForHeight:320 andWidth:480];
+        _encoder = [AVEncoder encoderForHeight:240 andWidth:320];
         [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
 //            if (_rtsp != nil)
 //            {

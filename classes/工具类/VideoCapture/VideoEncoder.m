@@ -41,8 +41,8 @@
     NSDictionary *videoCleanApertureSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                                 [NSNumber numberWithInt:width], AVVideoCleanApertureWidthKey,
                                                 [NSNumber numberWithInt:height], AVVideoCleanApertureHeightKey,
-                                                [NSNumber numberWithInt:10], AVVideoCleanApertureHorizontalOffsetKey,
-                                                [NSNumber numberWithInt:10], AVVideoCleanApertureVerticalOffsetKey,
+                                                [NSNumber numberWithInt:0], AVVideoCleanApertureHorizontalOffsetKey,
+                                                [NSNumber numberWithInt:0], AVVideoCleanApertureVerticalOffsetKey,
                                                 nil];
     
     NSDictionary *codecSettings = [NSDictionary dictionaryWithObjectsAndKeys:

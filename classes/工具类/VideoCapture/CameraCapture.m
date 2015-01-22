@@ -9,7 +9,7 @@
 #import "CameraCapture.h"
 #import "AVEncoder.h"
 //#import "RTSPServer.h"
-
+ 
 static CameraCapture* theServer;
 
 @interface CameraCapture  () <AVCaptureVideoDataOutputSampleBufferDelegate>
@@ -42,6 +42,13 @@ static CameraCapture* theServer;
     return theServer;
 }
 
+  OpenLocalUser *mOpenLocalUser;
+
+- (void)setOpenLocalUser:( OpenLocalUser *)penLocalUser
+{
+       mOpenLocalUser=penLocalUser;
+}
+
 - (void) startup
 {
     if (_session == nil)
@@ -67,6 +74,14 @@ static CameraCapture* theServer;
         // create an encoder
         _encoder = [AVEncoder encoderForHeight:240 andWidth:320];
         [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
+            
+            if (mOpenLocalUser) {
+                 mOpenLocalUser->On_MediaReceiverCallbackVideo(NULL , 10, YES, 320, 240);
+            }
+//            if (self.delegate) {
+////                [self.delegate VideoDataOutputFrame:data  framewidth:320 framehight:240];
+//                
+//            }
 //            if (_rtsp != nil)
 //            {
 //                _rtsp.bitrate = _encoder.bitspersecond;

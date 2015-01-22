@@ -15,7 +15,8 @@
 #include "AudioLibrary/AudioLibrary.h"
 #include "VideoLibrary/VideoLibrary.h"
 #include "LoginServer.h"
-#import "CameraCapture.h"
+//
+@class   CameraCapture;
 typedef std::vector<std::string> OPENMEUSERLIST;
 
 class OpenLocalUser

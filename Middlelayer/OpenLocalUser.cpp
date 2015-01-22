@@ -12,6 +12,7 @@
 #include "VIDEC/VIDEC_Header.h"
 #include "NETEC/NETEC_Setting.h"
 #include <sys/time.h>
+#import "CameraCapture.h"
 
 typedef enum {
 	VIDEC_CODEC_H261=0,		//unsupport
@@ -124,7 +125,7 @@ bool OpenLocalUser::OpenVideo(void* pView, unsigned long ulUserVideoId, unsigned
     
     m_ulLocalVideoID = ulUserVideoId;
     m_IsOpenVideo = true;
-    
+    [[CameraCapture shareCameraCapture]setOpenLocalUser:this];
     [[CameraCapture shareCameraCapture]startup];
     AVCaptureVideoPreviewLayer* preview = [[CameraCapture shareCameraCapture] getPreviewLayer];
     [preview removeFromSuperlayer];

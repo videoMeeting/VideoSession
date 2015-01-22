@@ -241,6 +241,11 @@
 		1BFEA43E16F4765600258FFE /* GroupUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEA43C16F4765500258FFE /* GroupUserViewController.xib */; };
 		1BFEA44216F49D3B00258FFE /* GroupUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFEA44016F49D3900258FFE /* GroupUserCell.m */; };
 		1BFEA44316F49D3B00258FFE /* GroupUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEA44116F49D3A00258FFE /* GroupUserCell.xib */; };
+		6105044E1A7090B900E2EADF /* AVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 610504451A7090B900E2EADF /* AVEncoder.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		6105044F1A7090B900E2EADF /* CameraCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 610504471A7090B900E2EADF /* CameraCapture.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		610504501A7090B900E2EADF /* MP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 610504491A7090B900E2EADF /* MP4Atom.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		610504511A7090B900E2EADF /* NALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6105044A1A7090B900E2EADF /* NALUnit.cpp */; };
+		610504521A7090B900E2EADF /* VideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6105044D1A7090B900E2EADF /* VideoEncoder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		61409C091A5E8A8500755436 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8C0E0D17B28ED400268820 /* OpenGLES.framework */; };
 		61440D9C1A28B31100BD7AE0 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61440D9B1A28B31100BD7AE0 /* libbz2.dylib */; };
 		6153815F1A5E929D00BABAED /* libVideoLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AB619E1A2825C000BA2367 /* libVideoLibrary.a */; };
@@ -631,6 +636,16 @@
 		1BFEA43F16F49D3900258FFE /* GroupUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupUserCell.h; sourceTree = "<group>"; };
 		1BFEA44016F49D3900258FFE /* GroupUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupUserCell.m; sourceTree = "<group>"; };
 		1BFEA44116F49D3A00258FFE /* GroupUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupUserCell.xib; sourceTree = "<group>"; };
+		610504441A7090B900E2EADF /* AVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEncoder.h; sourceTree = "<group>"; };
+		610504451A7090B900E2EADF /* AVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVEncoder.mm; sourceTree = "<group>"; };
+		610504461A7090B900E2EADF /* CameraCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraCapture.h; sourceTree = "<group>"; };
+		610504471A7090B900E2EADF /* CameraCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraCapture.m; sourceTree = "<group>"; };
+		610504481A7090B900E2EADF /* MP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Atom.h; sourceTree = "<group>"; };
+		610504491A7090B900E2EADF /* MP4Atom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Atom.m; sourceTree = "<group>"; };
+		6105044A1A7090B900E2EADF /* NALUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NALUnit.cpp; sourceTree = "<group>"; };
+		6105044B1A7090B900E2EADF /* NALUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALUnit.h; sourceTree = "<group>"; };
+		6105044C1A7090B900E2EADF /* VideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEncoder.h; sourceTree = "<group>"; };
+		6105044D1A7090B900E2EADF /* VideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEncoder.m; sourceTree = "<group>"; };
 		61440D9B1A28B31100BD7AE0 /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		615381641A5FB86D00BABAED /* UDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDNavigationController.h; path = "classes/工具类/UDNavigationController.h"; sourceTree = "<group>"; };
 		615381651A5FB86D00BABAED /* UDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDNavigationController.m; path = "classes/工具类/UDNavigationController.m"; sourceTree = "<group>"; };
@@ -1461,6 +1476,7 @@
 		1BFEA42116F3F3BC00258FFE /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
+				610504431A7090B900E2EADF /* VideoCapture */,
 				615381641A5FB86D00BABAED /* UDNavigationController.h */,
 				615381651A5FB86D00BABAED /* UDNavigationController.m */,
 				1B948F8F174140A500B94DA2 /* Custom.h */,
@@ -1502,6 +1518,24 @@
 				1BFEA43C16F4765500258FFE /* GroupUserViewController.xib */,
 			);
 			name = "群组操作";
+			sourceTree = "<group>";
+		};
+		610504431A7090B900E2EADF /* VideoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				610504441A7090B900E2EADF /* AVEncoder.h */,
+				610504451A7090B900E2EADF /* AVEncoder.mm */,
+				610504461A7090B900E2EADF /* CameraCapture.h */,
+				610504471A7090B900E2EADF /* CameraCapture.m */,
+				610504481A7090B900E2EADF /* MP4Atom.h */,
+				610504491A7090B900E2EADF /* MP4Atom.m */,
+				6105044A1A7090B900E2EADF /* NALUnit.cpp */,
+				6105044B1A7090B900E2EADF /* NALUnit.h */,
+				6105044C1A7090B900E2EADF /* VideoEncoder.h */,
+				6105044D1A7090B900E2EADF /* VideoEncoder.m */,
+			);
+			name = VideoCapture;
+			path = "classes/工具类/VideoCapture";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1778,6 +1812,7 @@
 				1BF67058169AAED100E2314F /* LoginViewController.m in Sources */,
 				1BF67060169AB22B00E2314F /* ConfigViewController.m in Sources */,
 				1BF67076169AB3EB00E2314F /* VoiceViewController.m in Sources */,
+				6105044E1A7090B900E2EADF /* AVEncoder.mm in Sources */,
 				1BEC49B3169BD05400328B3E /* VideoViewController.m in Sources */,
 				1BEC49B9169BD17C00328B3E /* CallHistoryViewController.m in Sources */,
 				1BEC49BE169BD1B900328B3E /* SettingViewController.m in Sources */,
@@ -1789,8 +1824,10 @@
 				1B03CE0316A8D84C00D7845D /* LoginServer.cpp in Sources */,
 				1B03CE1816A8F7C100D7845D /* ImsContactItem.m in Sources */,
 				1B03CE1C16A8FE9B00D7845D /* ContactCell.m in Sources */,
+				6105044F1A7090B900E2EADF /* CameraCapture.m in Sources */,
 				1BCDDADC16B8B07E00C1E3C1 /* SessionChatViewController.mm in Sources */,
 				1BCDDB0C16B918D800C1E3C1 /* SessionInfo.cpp in Sources */,
+				610504501A7090B900E2EADF /* MP4Atom.m in Sources */,
 				96EE2DB316C7C7B700B8DC93 /* OpenLocalUser.cpp in Sources */,
 				96EE2DB416C7C7B700B8DC93 /* OpenRemoteUser.cpp in Sources */,
 				1B2042DA16D20AF40077AE53 /* SessionControlViewController.m in Sources */,
@@ -1824,7 +1861,9 @@
 				96EA9C441705D9CB006BDC8F /* CallHistoryHelp.m in Sources */,
 				1B113ED717096DDE0003297C /* UISubTabBarController.m in Sources */,
 				1B113EDA170972B80003297C /* UISubNavigationController.m in Sources */,
+				610504521A7090B900E2EADF /* VideoEncoder.m in Sources */,
 				1B113EDD1709758A0003297C /* UISubScrollView.m in Sources */,
+				610504511A7090B900E2EADF /* NALUnit.cpp in Sources */,
 				9605ACBB171707CC00ECE4E1 /* VideoAndAudioSet.cpp in Sources */,
 				1B5FC858172569B200F5EBB4 /* MoreViewController.m in Sources */,
 				1B5FC85C1725796600F5EBB4 /* UISubLRNavgationViewController.m in Sources */,

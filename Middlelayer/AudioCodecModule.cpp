@@ -4,7 +4,7 @@
 
 #define LOGI printf
 #define LOGE printf
-
+//wangguijun
 AudioCodecModule* AudioCodecModule::Create(const int32_t id)
 {
     return new AudioCodecModule(id);

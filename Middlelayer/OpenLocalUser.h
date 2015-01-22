@@ -15,7 +15,7 @@
 #include "AudioLibrary/AudioLibrary.h"
 #include "VideoLibrary/VideoLibrary.h"
 #include "LoginServer.h"
-
+#import "CameraCapture.h"
 typedef std::vector<std::string> OPENMEUSERLIST;
 
 class OpenLocalUser
@@ -79,7 +79,9 @@ private:
 	unsigned long           m_ulLocalVideoID ;			//VideoID
 	unsigned long           m_ulLocalAudioID ;			//AudioID
     AudioCapture*           m_pAudioCapture;
-    VideoCapture*           m_pVideoCapture;
+//    VideoCapture*           m_pVideoCapture;
+     CameraCapture *        m_CameraCapture;
+ 
 private:
 	bool m_bGotKeyFrameMain;
 	char* m_pVideoPacket;

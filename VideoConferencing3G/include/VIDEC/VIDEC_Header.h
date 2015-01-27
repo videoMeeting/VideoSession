@@ -9,7 +9,7 @@
 #define __INLINE__	inline
 #endif
 
-#define USER_SUBCONTRACTING
+//#define USER_SUBCONTRACTING
 
 #define VIDEC_KEY_SUBCONTRACTING_LEN			4
 

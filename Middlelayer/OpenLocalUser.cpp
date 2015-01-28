@@ -70,6 +70,7 @@ OpenLocalUser::OpenLocalUser()
 , m_IsSendAudioData(false)
 , m_IsOpenVideo(false)
 , m_IsOpenAudio(false)
+, m_pH264RTPFrame(NULL)
 {
     NETEC_Setting::SetVideoProtocolType(NETEC_Setting::PT_TCP);
     NETEC_Setting::SetAudioProtocolType(NETEC_Setting::PT_TCP);
@@ -83,6 +84,8 @@ OpenLocalUser::OpenLocalUser()
         m_nFrameBufferLength=0;
     }
 #endif
+    m_pH264RTPFrame = new H264RTPFrame(*this);
+//    m_pH264RTPFrame->Open(97, 1100);
 }
 
 OpenLocalUser::~OpenLocalUser()
@@ -92,6 +95,12 @@ OpenLocalUser::~OpenLocalUser()
         ReleaseAudioCapture();
     m_pAudioCapture = NULL;
 #endif
+    
+    if(m_pH264RTPFrame)
+    {
+        m_pH264RTPFrame->Close();
+        delete m_pH264RTPFrame;
+    }
     
 //    if(m_pVideoCapture)
 //        ReleaseVideoCapture();
@@ -221,7 +230,21 @@ void OpenLocalUser::On_MediaReceiverCallbackVideo(unsigned char*pData,int nLen, 
     if(pData==NULL || nLen<=0 )
         return;
     if(m_IsSendVideoData)
-        ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);
+    {
+        if(m_pH264RTPFrame)
+            m_pH264RTPFrame->SendFrame(pData, nLen, nWidth, nHeight, bKeyFrame, TimeGetTimestamp());
+    }
+    //ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);
+}
+
+void OpenLocalUser::OnBaseRTPFrameCallbackRTPPacket(void*pPacketData,int nPacketLen)
+{
+    ProcessVideoFrame((char*)pPacketData, nPacketLen, true, TimeGetTimestamp(), 320, 240);
+}
+
+void OpenLocalUser::OnBaseRTPFrameCallbackFramePacket(void*pPacketData,int nPacketLen)
+{
+    
 }
 
 bool OpenLocalUser::SendAudioData()
@@ -442,6 +465,7 @@ void OpenLocalUser::ProcessVideoFrame(char*pData, int nLen, bool bKeyFrame, unsi
         }
 	}
 #else
+    
     if (m_nFrameBufferLength<nLen+1024)
 	{
 		m_nFrameBufferLength=nLen+2048;

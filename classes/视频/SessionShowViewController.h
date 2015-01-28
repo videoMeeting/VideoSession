@@ -75,9 +75,9 @@ typedef enum SCREEN_TYPE
     bool soundOff;
     bool isHiddenbtSplit;
     bool isHiddenInviteView;
-    std::string strPeerUserID;
+    std::string mstrPeerUserID;
     std::string mstrFromUserID;
-    std::string strSpeekUserID;
+    std::string mstrSpeekUserID;
     unsigned int m_uiScreenControl;
     AppDelegate* appDelegate;
     long roomId;
@@ -90,19 +90,11 @@ typedef enum SCREEN_TYPE
     unsigned int uiRoomVideoType;
     unsigned int uiRoomAudioType;
     unsigned int uiMyScreenCount;
-    UIToolbar *toolbar;
-    bool isSoundOff;
-    UIButton *btSoundOffBbutton;
-    UIButton *btRefreshBbutton;
-    UIButton *btSwitchCamera;
-    UIButton*btSplitView;
-    UIButton *btAddUser;
+     bool isSoundOff;
+  
     bool fullScreen;
     SCREEN_TYPE fullScreenType;
-    UIButton *btUserList;
-    UIButton *btCharacter;
-    UIButton *btFullScreen;
-    UIButton *btManage;
+ 
     MBProgressHUD              *m_pMBProgressHUD;
     NSTimer                    *mNSTimer;
     NSTimer                    *mEnterRoomNSTimer;

@@ -27,35 +27,35 @@
 
 @implementation SessionShowViewController
  
-// 
-//@synthesize lable1;
-//@synthesize lable2;
-//@synthesize lable3;
-//@synthesize lable4;
-//@synthesize fullScreenType;
-//@synthesize fullScreen;
-//@synthesize splitView;
-//@synthesize InviteView;
-//@synthesize toolbar;
-//@synthesize videoSessionViewController;
-//@synthesize inviteGroupsViewController;
-//@synthesize isSoundOff;
-//@synthesize btSoundOffBbutton;
-//@synthesize btRefreshBbutton;
-//@synthesize btSwitchCamera;
-//@synthesize btSplitView;
-//@synthesize btAddUser;
-//@synthesize btUserList;
-//@synthesize btCharacter;
-//@synthesize btFullScreen;
-//@synthesize btManage;
-//@synthesize uiRoomVideoType;
-//@synthesize uiRoomAudioType;
-//@synthesize OpenRemoteUserMap;
-//@synthesize videoAndVoiceViewController;
-//@synthesize sessionChatViewController;
-//@synthesize sessionInfoViewController;
-//@synthesize pVideoViewController;
+ 
+@synthesize lable1;
+@synthesize lable2;
+@synthesize lable3;
+@synthesize lable4;
+@synthesize fullScreenType;
+@synthesize fullScreen;
+@synthesize splitView;
+@synthesize InviteView;
+@synthesize toolbar;
+@synthesize videoSessionViewController;
+@synthesize inviteGroupsViewController;
+@synthesize isSoundOff;
+@synthesize btSoundOffBbutton;
+@synthesize btRefreshBbutton;
+@synthesize btSwitchCamera;
+@synthesize btSplitView;
+@synthesize btAddUser;
+@synthesize btUserList;
+@synthesize btCharacter;
+@synthesize btFullScreen;
+@synthesize btManage;
+@synthesize uiRoomVideoType;
+@synthesize uiRoomAudioType;
+@synthesize OpenRemoteUserMap;
+@synthesize videoAndVoiceViewController;
+@synthesize sessionChatViewController;
+@synthesize sessionInfoViewController;
+@synthesize pVideoViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,7 +92,7 @@
         spliteType=0;
         bIsEnterRoom = false;
         m_pOpenRemoteUser = NULL;
-        mstrSpeekUserID = "";
+        strSpeekUserID = "";
         m_Is5Window = false;
         mCount = 0;
     }
@@ -596,15 +596,15 @@
         }
         else if(uiRoomAudioType == ROOM_AUDIO_SPEAK)
         {
-            if(!mstrSpeekUserID.empty())
+            if(!strSpeekUserID.empty())
             {
-                if(mstrSpeekUserID == pLoginServer->GetUserID())
+                if(strSpeekUserID == pLoginServer->GetUserID())
                 {
                     [self User_OpenLocalAudio:pLoginServer->GetUserID() IsSendData:true];
                 }
                 else
                 {
-                    [self User_OpenPeerAudio:mstrSpeekUserID];
+                    [self User_OpenPeerAudio:strSpeekUserID];
                 }
             }
         }
@@ -741,7 +741,7 @@
         if(!pOpenLocalUser->IsSendAudioData())
             pOpenLocalUser->SendAudioData();
         
-        mstrSpeekUserID = strUserID;
+        strSpeekUserID = strUserID;
     }
 }
 
@@ -757,7 +757,7 @@
         if(pOpenLocalUser->IsOpenAudio())
             pOpenLocalUser->CloseAudio();
         
-        mstrSpeekUserID = "";
+        strSpeekUserID = "";
     }
 }
 
@@ -869,7 +869,7 @@
         if(!pOpenRemoteUser->IsStartReceiverAudio())
             pOpenRemoteUser->StartPeerAudioData(parstrPeerUserID, ulPeerAudioId);
         
-        mstrSpeekUserID = parstrPeerUserID;
+        strSpeekUserID = parstrPeerUserID;
     }
 }
 
@@ -893,7 +893,7 @@
                 pOpenRemoteUser->CloseAudio();
         }
         
-        mstrSpeekUserID = "";
+        strSpeekUserID = "";
     }
 }
 
@@ -2110,7 +2110,7 @@
     pLoginServer->m_MMGetRoomControl = self;
     
     if(pLoginServer->ISChairman())
-        mstrSpeekUserID = pLoginServer->GetUserID();
+        strSpeekUserID = pLoginServer->GetUserID();
     
     UILongPressGestureRecognizer *longpressGesutre1=[[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(LongToucvideoWindow1:)]autorelease];
     longpressGesutre1.minimumPressDuration=1;
@@ -2286,7 +2286,7 @@
     if(!bIsEnterRoom)
         return;
     mstrFromUserID = strFromUserID;
-    mstrPeerUserID = strUserId;
+    strPeerUserID = strUserId;
     m_uiScreenControl = uiScreenControl;
     [self performSelectorOnMainThread:@selector(OpenUserVideo:) withObject:self waitUntilDone:YES];
 }
@@ -2296,7 +2296,7 @@
     if(!bIsEnterRoom)
         return;
     mstrFromUserID = strFromUserID;
-    mstrPeerUserID = strUserId;
+    strPeerUserID = strUserId;
     [self performSelectorOnMainThread:@selector(CloseUserVideo:) withObject:self waitUntilDone:YES];
 }
 
@@ -2305,7 +2305,7 @@
     if(!bIsEnterRoom)
         return;
     mstrFromUserID = strFromUserID;
-    mstrPeerUserID = strUserId;
+    strPeerUserID = strUserId;
     [self performSelectorOnMainThread:@selector(OpenUserAudio:) withObject:self waitUntilDone:YES];
 }
 
@@ -2314,7 +2314,7 @@
     if(!bIsEnterRoom)
         return;
     mstrFromUserID = strFromUserID;
-    mstrPeerUserID = strUserId;
+    strPeerUserID = strUserId;
     [self performSelectorOnMainThread:@selector(CloseUserAudio:) withObject:self waitUntilDone:YES];
 }
 
@@ -2441,7 +2441,7 @@
 {
     if(!bIsEnterRoom)
         return;
-    mstrPeerUserID = strUserID;
+    strPeerUserID = strUserID;
     [self performSelectorOnMainThread:@selector(OnForTheFloor:) withObject:self waitUntilDone:YES];
 }
 
@@ -2466,13 +2466,13 @@
         return;
     
     strUserMsg = ulUserMsg;
-    mstrPeerUserID = strUserID;
+    strPeerUserID = strUserID;
     [self performSelectorOnMainThread:@selector(OnUserSnedMsg:) withObject:self waitUntilDone:YES];
 }
 
 -(void) OnForTheFloor:(id)mid
 {
-    NSString *UserID=[[[NSString alloc]initWithCString:mstrPeerUserID.c_str() encoding: NSUTF8StringEncoding] autorelease];
+    NSString *UserID=[[[NSString alloc]initWithCString:strPeerUserID.c_str() encoding: NSUTF8StringEncoding] autorelease];
     NSString *Userinfo = [[[NSString alloc]initWithFormat:@"用户%@申请发言",UserID]autorelease];
     ForTheFloor = [[UIAlertView alloc] initWithTitle:Userinfo message:@""
                                                    delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
@@ -2488,7 +2488,7 @@
         if (buttonIndex == 1)
         {
             [self User_CloseAllAudio];
-            [self User_OpenPeerAudio:mstrPeerUserID];
+            [self User_OpenPeerAudio:strPeerUserID];
         }
     }
     else if(QiutRoomalert == actionSheet)
@@ -2534,7 +2534,7 @@
 -(void) OnUserSnedMsg:(id)mid
 {
     NSString* info = [NSString stringWithCString:strUserMsg.c_str() encoding:NSUTF8StringEncoding];
-    NSString* strUserName = [NSString stringWithCString:mstrPeerUserID.c_str() encoding:NSUTF8StringEncoding];
+    NSString* strUserName = [NSString stringWithCString:strPeerUserID.c_str() encoding:NSUTF8StringEncoding];
     NSString* strGetInfo = [NSString stringWithFormat:@"%@%@%@",strUserName,@"说:",info];
 
     if(self.sessionChatViewController!=nil)
@@ -2683,7 +2683,7 @@
 
 -(void) OpenUserVideo:(id)mid
 {
-    if(mstrPeerUserID.empty())
+    if(strPeerUserID.empty())
         return;
     assert(pLoginServer);
     assert(pOpenLocalUser);
@@ -2700,7 +2700,7 @@
 
 -(void)Room_OpenVideo_Push
 {
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
         if(pOpenLocalUser)
         {
@@ -2732,10 +2732,10 @@
     }
     
     unsigned int uiScreen = m_uiScreenControl;
-    iOSGLView* pView = [self GetWindow:mstrPeerUserID uiScreen:uiScreen IsSet:true];
+    iOSGLView* pView = [self GetWindow:strPeerUserID uiScreen:uiScreen IsSet:true];
     if(pView!=nil)
     {
-        [self User_OpenPeerVideo:mstrPeerUserID pView:pView uiScreen:uiScreen bIsBroadcast:true IsSendCommand:false];
+        [self User_OpenPeerVideo:strPeerUserID pView:pView uiScreen:uiScreen bIsBroadcast:true IsSendCommand:false];
     }
     
     if(self.sessionInfoViewController!=nil)
@@ -2744,7 +2744,7 @@
 
 -(void) CloseUserVideo:(id)mid
 {
-    if(mstrPeerUserID.empty())
+    if(strPeerUserID.empty())
         return;
     assert(pLoginServer);
     assert(pOpenLocalUser);
@@ -2761,14 +2761,14 @@
 
 -(void)Room_CloseVideo_Push
 {
-    if(pLoginServer->ISChairman()&&mstrPeerUserID == pLoginServer->GetUserID())
+    if(pLoginServer->ISChairman()&&strPeerUserID == pLoginServer->GetUserID())
     {
         if(self.sessionInfoViewController!=nil)
             [self.sessionInfoViewController MyUpdateMeetingInfo:self];
         return;
     }
     
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
         pOpenLocalUser->setVideoWindow(nil);
         SCREENCONTROLINFOMAP::iterator it = ScreenControlinfoMap.begin();
@@ -2788,7 +2788,7 @@
             pOpenLocalUser->CloseVideo();
         
         
-        [self CloseWindow:mstrPeerUserID];
+        [self CloseWindow:strPeerUserID];
         
         if(self.sessionInfoViewController!=nil)
             [self.sessionInfoViewController MyUpdateMeetingInfo:self];
@@ -2796,7 +2796,7 @@
         return;
     }
     
-    [self User_ClosePeerVideo:mstrPeerUserID IsSendCommand:false bIsBroadcast:false];
+    [self User_ClosePeerVideo:strPeerUserID IsSendCommand:false bIsBroadcast:false];
     
     if(self.sessionInfoViewController!=nil)
         [self.sessionInfoViewController MyUpdateMeetingInfo:self];
@@ -2804,7 +2804,7 @@
 
 -(void)Room_OpenVideo_Room
 {
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
         if(pOpenLocalUser)
         {
@@ -2834,7 +2834,7 @@
 
 -(void)Room_CloseVideo_Room
 {
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
 #if 0
         if(pOpenLocalUser->OpenMeVideoCount() <= 1)
@@ -2869,7 +2869,7 @@
 
 -(void) OpenUserAudio:(id)mid
 {
-    if(mstrPeerUserID.empty())
+    if(strPeerUserID.empty())
         return;
     assert(pLoginServer);
     assert(pOpenLocalUser);
@@ -2878,7 +2878,7 @@
 
 -(void) CloseUserAudio:(id)mid
 {
-    if(mstrPeerUserID.empty())
+    if(strPeerUserID.empty())
         return;
     assert(pLoginServer);
     assert(pOpenLocalUser);
@@ -2888,7 +2888,7 @@
 
 -(void)Room_OpenAudio_Discuss_Speak
 {
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
         if(!pLoginServer->ISChairman()&&!pOpenLocalUser->IsOpenAudio())
             pOpenLocalUser->OpenAudio(pLoginServer->GetLocalAudioId(), AMR_NBCODE);
@@ -2902,9 +2902,9 @@
     }
     
     //unsigned long ulPeerVideoId = pLoginServer->GetPeerUserVideoId(strPeerUserID);
-    unsigned long ulPeerAudioId = pLoginServer->GetPeerUserAudioId(mstrPeerUserID);
+    unsigned long ulPeerAudioId = pLoginServer->GetPeerUserAudioId(strPeerUserID);
     OpenRemoteUser* pOpenRemoteUser = NULL;
-    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(mstrPeerUserID);
+    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(strPeerUserID);
     if(iter != OpenRemoteUserMap.end())
     {
         pOpenRemoteUser = iter->second;
@@ -2915,13 +2915,13 @@
     {
         pOpenRemoteUser = new OpenRemoteUser;
         pOpenRemoteUser->ConnectMediaServer(pLoginServer->GetServerIp(), pLoginServer->GetServerPort());
-        OpenRemoteUserMap[mstrPeerUserID] = pOpenRemoteUser;
+        OpenRemoteUserMap[strPeerUserID] = pOpenRemoteUser;
     }
     assert(pOpenRemoteUser);
     if(!pOpenRemoteUser->IsOpenAudio())
         pOpenRemoteUser->OpenAudio(AMR_NBCODE);
     if(!pOpenRemoteUser->IsStartReceiverAudio())
-        pOpenRemoteUser->StartPeerAudioData(mstrPeerUserID, ulPeerAudioId);
+        pOpenRemoteUser->StartPeerAudioData(strPeerUserID, ulPeerAudioId);
     
     if(self.sessionInfoViewController!=nil)
         [self.sessionInfoViewController MyUpdateMeetingInfo:self];
@@ -2929,10 +2929,10 @@
 
 -(void)Room_CloseAudio_Discuss_Speak
 {
-    if(pLoginServer->ISChairman()&&mstrPeerUserID == pLoginServer->GetUserID())
+    if(pLoginServer->ISChairman()&&strPeerUserID == pLoginServer->GetUserID())
         return;
     
-    if(mstrPeerUserID == pLoginServer->GetUserID())
+    if(strPeerUserID == pLoginServer->GetUserID())
     {
         pOpenLocalUser->ClearOpenMeAudioUser();
         if(pOpenLocalUser->IsSendAudioData())
@@ -2942,7 +2942,7 @@
     }
     
     OpenRemoteUser* pOpenRemoteUser = NULL;
-    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(mstrPeerUserID);
+    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(strPeerUserID);
     if(iter != OpenRemoteUserMap.end())
     {
         pOpenRemoteUser = iter->second;

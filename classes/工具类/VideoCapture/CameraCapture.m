@@ -80,12 +80,12 @@ static CameraCapture* theServer;
                 for (int i = 0; i < nNALUs; i++)
                 {
                     NSData* nalu = [data objectAtIndex:i];
-                    bool iskey=YES;
+                    bool iskey=NO;
                     unsigned char* pSource = (unsigned char*)[nalu bytes];
-//                    if ((pSource[0] & 0x1f) == 5)
-//                    {
-//                        iskey=YES;
-//                    }
+                    if ((pSource[0] & 0x1f) == 5)
+                    {
+                        iskey=YES;
+                    }
                     mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], iskey, 320, 240);
                     
                 }
@@ -129,7 +129,6 @@ static CameraCapture* theServer;
     if (_encoder)
     {
         [ _encoder shutdown];
-        _encoder=nil;
     }
 }
  

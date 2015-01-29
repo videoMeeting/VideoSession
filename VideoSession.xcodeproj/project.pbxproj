@@ -251,6 +251,8 @@
 		6153815F1A5E929D00BABAED /* libVideoLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AB619E1A2825C000BA2367 /* libVideoLibrary.a */; };
 		615381661A5FB86D00BABAED /* UDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 615381651A5FB86D00BABAED /* UDNavigationController.m */; };
 		615381681A5FBC6000BABAED /* bigShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 615381671A5FBC6000BABAED /* bigShadow.png */; };
+		61576E891A79316000EA7A56 /* BaseRTPFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61576E851A79316000EA7A56 /* BaseRTPFrame.cpp */; };
+		61576E8A1A79316000EA7A56 /* H264RTPFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61576E871A79316000EA7A56 /* H264RTPFrame.cpp */; };
 		61AB61A21A2825C000BA2367 /* libAudioLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AB619C1A2825C000BA2367 /* libAudioLibrary.a */; };
 		61AB61A31A2825C000BA2367 /* libKSYSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AB619D1A2825C000BA2367 /* libKSYSClient.a */; };
 		61AB61A51A2825C000BA2367 /* libWYBASE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AB619F1A2825C000BA2367 /* libWYBASE.a */; };
@@ -650,6 +652,10 @@
 		615381641A5FB86D00BABAED /* UDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDNavigationController.h; path = "classes/工具类/UDNavigationController.h"; sourceTree = "<group>"; };
 		615381651A5FB86D00BABAED /* UDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UDNavigationController.m; path = "classes/工具类/UDNavigationController.m"; sourceTree = "<group>"; };
 		615381671A5FBC6000BABAED /* bigShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigShadow.png; path = "邀请/bigShadow.png"; sourceTree = "<group>"; };
+		61576E851A79316000EA7A56 /* BaseRTPFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseRTPFrame.cpp; sourceTree = "<group>"; };
+		61576E861A79316000EA7A56 /* BaseRTPFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRTPFrame.h; sourceTree = "<group>"; };
+		61576E871A79316000EA7A56 /* H264RTPFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = H264RTPFrame.cpp; sourceTree = "<group>"; };
+		61576E881A79316000EA7A56 /* H264RTPFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H264RTPFrame.h; sourceTree = "<group>"; };
 		61AB619C1A2825C000BA2367 /* libAudioLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAudioLibrary.a; path = VideoConferencing3G/lib/libAudioLibrary.a; sourceTree = "<group>"; };
 		61AB619D1A2825C000BA2367 /* libKSYSClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKSYSClient.a; path = VideoConferencing3G/lib/libKSYSClient.a; sourceTree = "<group>"; };
 		61AB619E1A2825C000BA2367 /* libVideoLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libVideoLibrary.a; path = VideoConferencing3G/lib/libVideoLibrary.a; sourceTree = "<group>"; };
@@ -846,6 +852,10 @@
 		1B03CDFF16A8D84C00D7845D /* Middlelayer */ = {
 			isa = PBXGroup;
 			children = (
+				61576E851A79316000EA7A56 /* BaseRTPFrame.cpp */,
+				61576E861A79316000EA7A56 /* BaseRTPFrame.h */,
+				61576E871A79316000EA7A56 /* H264RTPFrame.cpp */,
+				61576E881A79316000EA7A56 /* H264RTPFrame.h */,
 				960370CE17C2F27500C65A44 /* audio_defines.h */,
 				960370CF17C2F27500C65A44 /* AudioCodecModule.cpp */,
 				960370D017C2F27500C65A44 /* AudioCodecModule.h */,
@@ -1808,6 +1818,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BF6703B169AADB700E2314F /* main.m in Sources */,
+				61576E891A79316000EA7A56 /* BaseRTPFrame.cpp in Sources */,
 				1BF6703F169AADB700E2314F /* AppDelegate.m in Sources */,
 				1BF67058169AAED100E2314F /* LoginViewController.m in Sources */,
 				1BF67060169AB22B00E2314F /* ConfigViewController.m in Sources */,
@@ -1827,6 +1838,7 @@
 				6105044F1A7090B900E2EADF /* CameraCapture.m in Sources */,
 				1BCDDADC16B8B07E00C1E3C1 /* SessionChatViewController.mm in Sources */,
 				1BCDDB0C16B918D800C1E3C1 /* SessionInfo.cpp in Sources */,
+				61576E8A1A79316000EA7A56 /* H264RTPFrame.cpp in Sources */,
 				610504501A7090B900E2EADF /* MP4Atom.m in Sources */,
 				96EE2DB316C7C7B700B8DC93 /* OpenLocalUser.cpp in Sources */,
 				96EE2DB416C7C7B700B8DC93 /* OpenRemoteUser.cpp in Sources */,

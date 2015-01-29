@@ -51,7 +51,7 @@ OpenRemoteUser::OpenRemoteUser()
     //[m_receiveAndPlayOpenAl initOpenALMode:AMR_NBCODE];
     
     m_pH264RTPFrame = new H264RTPFrame(*this);
-//    m_pH264RTPFrame->Open(97, 1100);
+    m_pH264RTPFrame->Open(97, 1100);
 }
 
 OpenRemoteUser::~OpenRemoteUser()

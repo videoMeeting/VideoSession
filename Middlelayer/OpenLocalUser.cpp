@@ -85,7 +85,7 @@ OpenLocalUser::OpenLocalUser()
     }
 #endif
     m_pH264RTPFrame = new H264RTPFrame(*this);
-//    m_pH264RTPFrame->Open(97, 1100);
+    m_pH264RTPFrame->Open(97, 1100);
 }
 
 OpenLocalUser::~OpenLocalUser()

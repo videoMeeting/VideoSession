@@ -86,7 +86,7 @@ static CameraCapture* theServer;
                     {
                         iskey=YES;
                     }
-                    mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], iskey, 320, 240);
+                    mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], ((nNALUs-i) == 1), 320, 240);
                     
                 }
                 

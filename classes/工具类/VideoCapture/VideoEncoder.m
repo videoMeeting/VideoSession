@@ -28,6 +28,7 @@
     NSURL* url = [NSURL fileURLWithPath:self.path];
     
     _writer = [AVAssetWriter assetWriterWithURL:url fileType:AVFileTypeQuickTimeMovie error:nil];
+<<<<<<< HEAD
     NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               AVVideoCodecH264, AVVideoCodecKey,
                               [NSNumber numberWithInt: width], AVVideoWidthKey,
@@ -37,6 +38,42 @@
                                     AVVideoCompressionPropertiesKey,
                               nil];
     _writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:settings];
+=======
+    //    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
+    //                              AVVideoCodecH264, AVVideoCodecKey,
+    //
+    //                              [NSNumber numberWithInt: width], AVVideoWidthKey,
+    //                              [NSNumber numberWithInt:height], AVVideoHeightKey,
+    //                              [NSDictionary dictionaryWithObjectsAndKeys:
+    //                                    @YES, AVVideoAllowFrameReorderingKey, nil],
+    //                                    AVVideoCompressionPropertiesKey,
+    //                              nil];
+    
+    NSDictionary *videoCleanApertureSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                [NSNumber numberWithInt:width], AVVideoCleanApertureWidthKey,
+                                                [NSNumber numberWithInt:height], AVVideoCleanApertureHeightKey,
+                                                [NSNumber numberWithInt:0], AVVideoCleanApertureHorizontalOffsetKey,
+                                                [NSNumber numberWithInt:0], AVVideoCleanApertureVerticalOffsetKey,
+                                                nil];
+    
+    NSDictionary *codecSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:3],AVVideoMaxKeyFrameIntervalKey,
+                                   AVVideoProfileLevelH264Baseline31,AVVideoProfileLevelKey,
+                                   [NSNumber numberWithDouble:500.0*1024.0], AVVideoAverageBitRateKey,
+                                   videoCleanApertureSettings, AVVideoCleanApertureKey,
+                                   nil];
+    
+    
+    
+    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   AVVideoCodecH264, AVVideoCodecKey,
+                                   codecSettings,AVVideoCompressionPropertiesKey,
+                                   [NSNumber numberWithInt:width], AVVideoWidthKey,
+                                   [NSNumber numberWithInt:height], AVVideoHeightKey,
+                                   nil];
+    
+    _writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
+>>>>>>> parent of bbcc850... 打包更新
     _writerInput.expectsMediaDataInRealTime = YES;
     [_writer addInput:_writerInput];
 }

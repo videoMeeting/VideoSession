@@ -12,10 +12,6 @@
 #include "VIDEC/VIDEC_Header.h"
 #include "NETEC/NETEC_Setting.h"
 #include <sys/time.h>
-<<<<<<< HEAD
-=======
-#import "CameraCapture.h"
->>>>>>> parent of d4879e7... yingbianm
 
 typedef enum {
 	VIDEC_CODEC_H261=0,		//unsupport
@@ -68,11 +64,7 @@ OpenLocalUser::OpenLocalUser()
 , m_pVideoView(NULL)
 , m_strUserID("")
 , m_pAudioCapture(NULL)
-<<<<<<< HEAD
 , m_pVideoCapture(NULL)
-=======
-, m_CameraCapture(NULL)
->>>>>>> parent of d4879e7... yingbianm
 , m_IsSendVideoData(false)
 , m_IsSendAudioData(false)
 , m_IsOpenVideo(false)
@@ -81,12 +73,7 @@ OpenLocalUser::OpenLocalUser()
     NETEC_Setting::SetVideoProtocolType(NETEC_Setting::PT_TCP);
     NETEC_Setting::SetAudioProtocolType(NETEC_Setting::PT_TCP);
     //m_pAudioCapture = CteateAudioCapture(this);
-<<<<<<< HEAD
     m_pVideoCapture = CteateVideoCapture(this);
-=======
-//    m_pVideoCapture = CteateVideoCapture(this);
-//      m_CameraCapture  = [CameraCapture shareCameraCapture];
->>>>>>> parent of d4879e7... yingbianm
 #ifdef USER_SUBCONTRACTING
     m_pVideoPacket=(char*)malloc(m_nFrameBufferLength);
     if (m_pVideoPacket==NULL)
@@ -104,15 +91,9 @@ OpenLocalUser::~OpenLocalUser()
     m_pAudioCapture = NULL;
 #endif
     
-<<<<<<< HEAD
     if(m_pVideoCapture)
         ReleaseVideoCapture();
     m_pVideoCapture = NULL;
-=======
-//    if(m_pVideoCapture)
-//        ReleaseVideoCapture();
-//    m_pVideoCapture = NULL;
->>>>>>> parent of d4879e7... yingbianm
     
     m_IsSendVideoData = false;
     m_IsSendAudioData = false;
@@ -137,7 +118,6 @@ void OpenLocalUser::ReleaseMediaSever()
 
 bool OpenLocalUser::OpenVideo(void* pView, unsigned long ulUserVideoId, unsigned int niWidth, unsigned int niHeight, unsigned int uiBitrate, unsigned int uiFramerate)
 {
-<<<<<<< HEAD
     if(m_pVideoCapture == NULL || ulUserVideoId == 0)
         return false;
     
@@ -149,52 +129,20 @@ bool OpenLocalUser::OpenVideo(void* pView, unsigned long ulUserVideoId, unsigned
     m_pVideoCapture->SetVideoFps(uiFramerate);
     m_pVideoCapture->StartCapture();
     m_pVideoCapture->StartEncoding();
-=======
-    if( ulUserVideoId == 0)
-        return false;//m_pVideoCapture == NULL ||
-    
-    m_ulLocalVideoID = ulUserVideoId;
-    m_IsOpenVideo = true;
-    [[CameraCapture shareCameraCapture]setOpenLocalUser:this];
-    [[CameraCapture shareCameraCapture]startup];
-    AVCaptureVideoPreviewLayer* preview = [[CameraCapture shareCameraCapture] getPreviewLayer];
-    [preview removeFromSuperlayer];
-    
-    preview.frame = ((UIView*)pView).bounds;
-    [[preview connection] setVideoOrientation:UIInterfaceOrientationPortrait];
-    
-    [((UIView*)pView).layer addSublayer:preview];
-//    m_pVideoCapture->SetLocalVideoWindow(pView);
-//    m_pVideoCapture->SetResolution(niWidth, niHeight);
-//    m_pVideoCapture->SetBitRate(uiBitrate);
-//    m_pVideoCapture->SetVideoFps(uiFramerate);
-//    m_pVideoCapture->StartCapture();
-//    m_pVideoCapture->StartEncoding();
->>>>>>> parent of d4879e7... yingbianm
     return true;
 }
 
 bool OpenLocalUser::setVideoWindow(UIView*preview)
 {
-<<<<<<< HEAD
     m_pVideoCapture->setPreview(preview);
-=======
-//    m_pVideoCapture->setPreview(preview);
->>>>>>> parent of d4879e7... yingbianm
     return  YES;
 }
 
 void OpenLocalUser::SetFrontAndRearCamera(bool isFront)
 {
-<<<<<<< HEAD
     if(m_pVideoCapture == NULL)
         return;
     m_pVideoCapture->SetFrontAndRearCamera(isFront);
-=======
-//    if(m_pVideoCapture == NULL)
-//        return;
-//    m_pVideoCapture->SetFrontAndRearCamera(isFront);
->>>>>>> parent of d4879e7... yingbianm
 }
 
 bool OpenLocalUser::SendVideoData()
@@ -202,47 +150,26 @@ bool OpenLocalUser::SendVideoData()
     if(!StartVideo())
         return false;
     m_IsSendVideoData = true;
-<<<<<<< HEAD
     m_pVideoCapture->StartEncodingData();
-=======
-//    m_pVideoCapture->StartEncodingData();
->>>>>>> parent of d4879e7... yingbianm
     return true;
 }
 
 void OpenLocalUser::StopSendVideoData()
 {
-<<<<<<< HEAD
     if(m_pVideoCapture == NULL)
         return;
     m_IsSendVideoData = false;
     m_pVideoCapture->StopEncodeingData();
-=======
-//    if(m_pVideoCapture == NULL)
-//        return;
-    m_IsSendVideoData = false;
-//    m_pVideoCapture->StopEncodeingData();
-        [[CameraCapture shareCameraCapture] shutdown];
->>>>>>> parent of d4879e7... yingbianm
     StopVideo();
 }
 
 void OpenLocalUser::CloseVideo()
 {
-<<<<<<< HEAD
     if(m_pVideoCapture == NULL)
         return;
     m_IsOpenVideo = false;
     m_pVideoCapture->StopCapture();
     m_pVideoCapture->StopEncoding();
-=======
-//    if(m_pVideoCapture == NULL)
-//        return;
-    [[CameraCapture shareCameraCapture]shutdown];
-//    m_IsOpenVideo = false;
-//    m_pVideoCapture->StopCapture();
-//    m_pVideoCapture->StopEncoding();
->>>>>>> parent of d4879e7... yingbianm
     StopVideo();
 }
 
@@ -278,11 +205,7 @@ void OpenLocalUser::On_MediaReceiverCallbackAudio(unsigned char*pData,int nLen)
 
 void OpenLocalUser::On_MediaReceiverCallbackVideo(unsigned char*pData,int nLen, bool bKeyFrame, int nWidth, int nHeight)
 {
-<<<<<<< HEAD
     if(pData==NULL || nLen<=0 || m_pVideoCapture==NULL)
-=======
-    if(pData==NULL || nLen<=0 )
->>>>>>> parent of d4879e7... yingbianm
         return;
     if(m_IsSendVideoData)
         ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);

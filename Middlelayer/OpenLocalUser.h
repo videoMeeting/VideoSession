@@ -15,16 +15,13 @@
 #include "AudioLibrary/AudioLibrary.h"
 #include "VideoLibrary/VideoLibrary.h"
 #include "LoginServer.h"
-#include "H264RTPFrame.h"
-//
-@class   CameraCapture;
+
 typedef std::vector<std::string> OPENMEUSERLIST;
 
 class OpenLocalUser
 : public NETEC_MediaSenderCallback
 , public AudioCaptureDataCallBack
 , public VideoCaptureDataCallBack
-, public BaseRTPFrameCallback
 {
 public:
     static OpenLocalUser* GetObject();
@@ -72,9 +69,6 @@ public:
     bool IsOpenAudio() const{return m_IsOpenAudio;};
     bool IsSendVideoData() const{return m_IsSendVideoData;};
     bool IsSendAudioData() const{return m_IsSendAudioData;};
-    
-    virtual void OnBaseRTPFrameCallbackRTPPacket(void*pPacketData,int nPacketLen);
-    virtual void OnBaseRTPFrameCallbackFramePacket(void*pPacketData,int nPacketLen);
 private:
     void ProcessVideoFrame(char*pData, int nLen, bool bKeyFrame, unsigned long ulTimestamp, int nWidth, int nHeight);
 public:
@@ -85,9 +79,7 @@ private:
 	unsigned long           m_ulLocalVideoID ;			//VideoID
 	unsigned long           m_ulLocalAudioID ;			//AudioID
     AudioCapture*           m_pAudioCapture;
-//    VideoCapture*           m_pVideoCapture;
-     CameraCapture *        m_CameraCapture;
- 
+    VideoCapture*           m_pVideoCapture;
 private:
 	bool m_bGotKeyFrameMain;
 	char* m_pVideoPacket;
@@ -111,7 +103,6 @@ private:
     std::string             m_strUserID;
     OPENMEUSERLIST          m_OpenMeVideoUserList;
     OPENMEUSERLIST          m_OpenMeAudioUserList;
-    H264RTPFrame*           m_pH264RTPFrame;
 };
 
 #endif

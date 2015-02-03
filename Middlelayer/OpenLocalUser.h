@@ -15,7 +15,12 @@
 #include "AudioLibrary/AudioLibrary.h"
 #include "VideoLibrary/VideoLibrary.h"
 #include "LoginServer.h"
+<<<<<<< HEAD
 
+=======
+//
+@class   CameraCapture;
+>>>>>>> parent of d4879e7... yingbianm
 typedef std::vector<std::string> OPENMEUSERLIST;
 
 class OpenLocalUser
@@ -79,7 +84,13 @@ private:
 	unsigned long           m_ulLocalVideoID ;			//VideoID
 	unsigned long           m_ulLocalAudioID ;			//AudioID
     AudioCapture*           m_pAudioCapture;
+<<<<<<< HEAD
     VideoCapture*           m_pVideoCapture;
+=======
+//    VideoCapture*           m_pVideoCapture;
+     CameraCapture *        m_CameraCapture;
+ 
+>>>>>>> parent of d4879e7... yingbianm
 private:
 	bool m_bGotKeyFrameMain;
 	char* m_pVideoPacket;

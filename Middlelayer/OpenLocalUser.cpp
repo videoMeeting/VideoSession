@@ -230,11 +230,11 @@ void OpenLocalUser::On_MediaReceiverCallbackVideo(unsigned char*pData,int nLen, 
     if(pData==NULL || nLen<=0 )
         return;
     //if(m_IsSendVideoData)
-    {
-        if(m_pH264RTPFrame)
-            m_pH264RTPFrame->SendFrame(pData, nLen, nWidth, nHeight, bKeyFrame, TimeGetTimestamp(), bKeyFrame);
-    }
-    //ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);
+//    {
+//        if(m_pH264RTPFrame)
+//            m_pH264RTPFrame->SendFrame(pData, nLen, nWidth, nHeight, bKeyFrame, TimeGetTimestamp(), bKeyFrame);
+//    }
+   ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);
 }
 
 void OpenLocalUser::OnBaseRTPFrameCallbackRTPPacket(void*pPacketData,int nPacketLen)

@@ -1486,7 +1486,6 @@
 		1BFEA42116F3F3BC00258FFE /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
-				61E5DD921A809F0B000E4BD4 /* rfc3984 */,
 				610504431A7090B900E2EADF /* VideoCapture */,
 				615381641A5FB86D00BABAED /* UDNavigationController.h */,
 				615381651A5FB86D00BABAED /* UDNavigationController.m */,
@@ -1547,13 +1546,6 @@
 			);
 			name = VideoCapture;
 			path = "classes/工具类/VideoCapture";
-			sourceTree = "<group>";
-		};
-		61E5DD921A809F0B000E4BD4 /* rfc3984 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = rfc3984;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -40,10 +40,10 @@ OpenRemoteUser::OpenRemoteUser()
     m_pAudioPacketBeffer=(char*)malloc(65);
     memset(m_pAudioPacketBeffer, 0, 65);
     m_pVideoPalyback = CteateVideoplayback();
-#ifdef USER_SUBCONTRACTING
-    m_pVideoPacketBeffer=(char*)malloc(1000*m_pVideoPacketLen);
-    memset(m_pVideoPacketBeffer, 0, 1000*m_pVideoPacketLen);
-#endif
+//#ifdef USER_SUBCONTRACTING
+//    m_pVideoPacketBeffer=(char*)malloc(1000*m_pVideoPacketLen);
+//    memset(m_pVideoPacketBeffer, 0, 1000*m_pVideoPacketLen);
+//#endif
     
     //VideoAndAudioSet* p = VideoAndAudioSet::GetObject();
     //m_pAudioplayback = CteateAudioplayback(p->GetSpeaker());
@@ -340,45 +340,45 @@ void OpenRemoteUser::OnNETEC_MediaReceiverCallbackAudioPacket(unsigned char*pDat
 
 void OpenRemoteUser::OnNETEC_MediaReceiverCallbackVideoPacket(unsigned char*pData,int nLen)
 {
-#ifdef USER_SUBCONTRACTING
-    if(pData != NULL && nLen>16 && m_IsReceiverVideo)
-    {
-        int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(pData);
-        int nSubHeaderLen=VIDEC_KEY_SUBCONTRACTING_GET_LEN(pData+nHeaderLen);
-        
-        unsigned short isBeging = VIDEC_KEY_SUBCONTRACTING_GET_BEGING(pData+nHeaderLen);
-        unsigned short isEnd = VIDEC_KEY_SUBCONTRACTING_GET_END(pData+nHeaderLen);
-        
-        if(isBeging == 1 && isEnd == 1)
-        {
-            if(m_pVideoPalyback)
-                m_pVideoPalyback->AddVideoData(pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
-            return;
-        }
-        
-        if(isBeging == 1 && isEnd == 0 && m_iVideoBefferState == 0)
-        {
-            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
-            m_pVideoPacketBefferSeek += (nLen-(nHeaderLen+nSubHeaderLen));
-            m_iVideoBefferState = 1;
-        }
-        else if(isBeging == 0 && isEnd == 0 && m_iVideoBefferState == 1)
-        {
-            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
-            m_pVideoPacketBefferSeek += (nLen-(nHeaderLen+nSubHeaderLen));
-        }
-        else if(isBeging == 0 && isEnd == 1 && m_iVideoBefferState == 1)
-        {
-            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
-            if(m_pVideoPalyback)
-                m_pVideoPalyback->AddVideoData((unsigned char*)m_pVideoPacketBeffer, m_pVideoPacketBefferSeek);
-            m_pVideoPacketBefferSeek = 0;
-            m_iVideoBefferState = 0;
-        }
-        else
-            assert(0);
-    }
-#else
+//#ifdef USER_SUBCONTRACTING
+//    if(pData != NULL && nLen>16 && m_IsReceiverVideo)
+//    {
+//        int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(pData);
+//        int nSubHeaderLen=VIDEC_KEY_SUBCONTRACTING_GET_LEN(pData+nHeaderLen);
+//        
+//        unsigned short isBeging = VIDEC_KEY_SUBCONTRACTING_GET_BEGING(pData+nHeaderLen);
+//        unsigned short isEnd = VIDEC_KEY_SUBCONTRACTING_GET_END(pData+nHeaderLen);
+//        
+//        if(isBeging == 1 && isEnd == 1)
+//        {
+//            if(m_pVideoPalyback)
+//                m_pVideoPalyback->AddVideoData(pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
+//            return;
+//        }
+//        
+//        if(isBeging == 1 && isEnd == 0 && m_iVideoBefferState == 0)
+//        {
+//            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
+//            m_pVideoPacketBefferSeek += (nLen-(nHeaderLen+nSubHeaderLen));
+//            m_iVideoBefferState = 1;
+//        }
+//        else if(isBeging == 0 && isEnd == 0 && m_iVideoBefferState == 1)
+//        {
+//            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
+//            m_pVideoPacketBefferSeek += (nLen-(nHeaderLen+nSubHeaderLen));
+//        }
+//        else if(isBeging == 0 && isEnd == 1 && m_iVideoBefferState == 1)
+//        {
+//            memcpy(m_pVideoPacketBeffer + m_pVideoPacketBefferSeek, pData+(nHeaderLen+nSubHeaderLen), nLen-(nHeaderLen+nSubHeaderLen));
+//            if(m_pVideoPalyback)
+//                m_pVideoPalyback->AddVideoData((unsigned char*)m_pVideoPacketBeffer, m_pVideoPacketBefferSeek);
+//            m_pVideoPacketBefferSeek = 0;
+//            m_iVideoBefferState = 0;
+//        }
+//        else
+//            assert(0);
+//    }
+//#else
     if(pData != NULL && nLen>16 && m_IsReceiverVideo)
     {
         int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(pData);
@@ -386,5 +386,5 @@ void OpenRemoteUser::OnNETEC_MediaReceiverCallbackVideoPacket(unsigned char*pDat
         if(m_pVideoPalyback)
             m_pVideoPalyback->AddVideoData(pData+nHeaderLen, nLen-nHeaderLen);
     }
-#endif
+//#endif
 }

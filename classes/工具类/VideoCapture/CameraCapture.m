@@ -86,7 +86,7 @@ static CameraCapture* theServer;
                     {
                         iskey=YES;
                     }
-                    mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], iskey, 320, 240);
+                    mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], YES, 320, 240);
                     
                 }
                 
@@ -96,6 +96,9 @@ static CameraCapture* theServer;
             return 0;
         } onParams:^int(NSData *data) {
 //            _rtsp = [RTSPServer setupListener:data];
+            unsigned char* pSource = (unsigned char*)[data bytes];
+            mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [data length], YES, 320, 240);
+            
             return 0;
         }];
         

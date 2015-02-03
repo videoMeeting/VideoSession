@@ -50,11 +50,11 @@ OpenLocalUser::OpenLocalUser()
 , m_pMediaSender(NULL)
 , m_bGotKeyFrameMain(false)
 , m_pVideoPacket(NULL)
-#ifdef USER_SUBCONTRACTING
-, m_nFrameBufferLength(1024)
-#else
+//#ifdef USER_SUBCONTRACTING
+//, m_nFrameBufferLength(1024)
+//#else
 , m_nFrameBufferLength(0)
-#endif
+//#endif
 , m_pAudioPacket(NULL)
 , m_nAudioFrameBufferLength(0)
 , m_usAudioSequence(0)
@@ -76,13 +76,13 @@ OpenLocalUser::OpenLocalUser()
     //m_pAudioCapture = CteateAudioCapture(this);
 //    m_pVideoCapture = CteateVideoCapture(this);
 //      m_CameraCapture  = [CameraCapture shareCameraCapture];
-#ifdef USER_SUBCONTRACTING
-    m_pVideoPacket=(char*)malloc(m_nFrameBufferLength);
-    if (m_pVideoPacket==NULL)
-    {
-        m_nFrameBufferLength=0;
-    }
-#endif
+//#ifdef USER_SUBCONTRACTING
+//    m_pVideoPacket=(char*)malloc(m_nFrameBufferLength);
+//    if (m_pVideoPacket==NULL)
+//    {
+//        m_nFrameBufferLength=0;
+//    }
+//#endif
 }
 
 OpenLocalUser::~OpenLocalUser()
@@ -341,107 +341,107 @@ void OpenLocalUser::ReleaseSender()
 
 void OpenLocalUser::ProcessVideoFrame(char*pData, int nLen, bool bKeyFrame, unsigned long ulTimestamp, int nWidth, int nHeight)
 {
-#ifdef USER_SUBCONTRACTING
-	if (m_nFrameBufferLength<1024 && !m_pVideoPacket && !pData && nLen <= 0)
-	{
-        return;
-	}
-    
-	if (m_bGotKeyFrameMain==false && bKeyFrame && m_pVideoPacket)
-	{
-		m_bGotKeyFrameMain=true;
-	}
-    
-	if (m_bGotKeyFrameMain && m_pVideoPacket)
-	{
-        
-        if(nLen < 1000)
-        {
-            VIDEC_HEADER_EXT_RESET(m_pVideoPacket);
-            VIDEC_HEADER_EXT_SET_CODEC_ID(m_pVideoPacket,VIDEC_CODEC_H264);
-            VIDEC_HEADER_EXT_SET_DOUBLE_FIELD(m_pVideoPacket,0);
-            VIDEC_HEADER_EXT_SET_KEYFRAME(m_pVideoPacket,(bKeyFrame?1:0));
-            VIDEC_HEADER_EXT_SET_SEQUENCE(m_pVideoPacket,m_usVideoSequence++);
-            VIDEC_HEADER_EXT_SET_TIMESTAMP(m_pVideoPacket,ulTimestamp);
-            
-            if (bKeyFrame)
-            {
-                VIDEC_HEADER_EXT_SET_ACTUAL_WIDTH(m_pVideoPacket,nWidth);
-                VIDEC_HEADER_EXT_SET_ACTUAL_HEIGHT(m_pVideoPacket,nHeight);
-                VIDEC_HEADER_EXT_SET_VIRTUAL_WIDTH(m_pVideoPacket,nWidth);
-                VIDEC_HEADER_EXT_SET_VIRTUAL_HEIGHT(m_pVideoPacket,nHeight);
-            }
-            
-            int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(m_pVideoPacket);
-            
-            VIDEC_HEADER_EXT_SET_MAIN_FRAME(m_pVideoPacket,1);
-            
-            VIDEC_KEY_SUBCONTRACTING_RESET(m_pVideoPacket+nHeaderLen);
-            VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,1);
-            VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen,1);
-            
-            int nSUBHeaderLen = VIDEC_KEY_SUBCONTRACTING_GET_LEN(m_pVideoPacket+nHeaderLen);
-            
-            memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData,nLen);
-            m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, nLen+nHeaderLen+nSUBHeaderLen);
-        }
-        else
-        {
-            bool isbegin = true;
-            int iLen = nLen;
-            unsigned int uiVideoPacketSeek = 0;
-            do
-            {
-                VIDEC_HEADER_EXT_RESET(m_pVideoPacket);
-                VIDEC_HEADER_EXT_SET_CODEC_ID(m_pVideoPacket,VIDEC_CODEC_H264);
-                VIDEC_HEADER_EXT_SET_DOUBLE_FIELD(m_pVideoPacket,0);
-                VIDEC_HEADER_EXT_SET_KEYFRAME(m_pVideoPacket,(bKeyFrame?1:0));
-                VIDEC_HEADER_EXT_SET_SEQUENCE(m_pVideoPacket,m_usVideoSequence++);
-                VIDEC_HEADER_EXT_SET_TIMESTAMP(m_pVideoPacket,ulTimestamp);
-                
-                if (bKeyFrame)
-                {
-                    VIDEC_HEADER_EXT_SET_ACTUAL_WIDTH(m_pVideoPacket,nWidth);
-                    VIDEC_HEADER_EXT_SET_ACTUAL_HEIGHT(m_pVideoPacket,nHeight);
-                    VIDEC_HEADER_EXT_SET_VIRTUAL_WIDTH(m_pVideoPacket,nWidth);
-                    VIDEC_HEADER_EXT_SET_VIRTUAL_HEIGHT(m_pVideoPacket,nHeight);
-                }
-                
-                int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(m_pVideoPacket);
-                
-                VIDEC_HEADER_EXT_SET_MAIN_FRAME(m_pVideoPacket,1);
-                
-                VIDEC_KEY_SUBCONTRACTING_RESET(m_pVideoPacket+nHeaderLen);
-                
-                int nSUBHeaderLen = VIDEC_KEY_SUBCONTRACTING_GET_LEN(m_pVideoPacket+nHeaderLen);
-                
-                if(iLen > 1000)
-                {
-                    VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,isbegin?1:0);
-                    VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen, 0);
-                    
-                    memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData + uiVideoPacketSeek,1000);
-                    m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, 1000+nHeaderLen+nSUBHeaderLen);
-                    
-                    iLen -= 1000;
-                    uiVideoPacketSeek += 1000;
-                }
-                else
-                {
-                    VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,isbegin?1:0);
-                    VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen,1);
-                    
-                    memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData + uiVideoPacketSeek,iLen);
-                    m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, iLen+nHeaderLen+nSUBHeaderLen);
-                    
-                    iLen -= iLen;
-                }
-                isbegin = false;
-            }
-            while( iLen > 0 );
-        }
-	}
-#else
+//#ifdef USER_SUBCONTRACTING
+//	if (m_nFrameBufferLength<1024 && !m_pVideoPacket && !pData && nLen <= 0)
+//	{
+//        return;
+//	}
+//    
+//	if (m_bGotKeyFrameMain==false && bKeyFrame && m_pVideoPacket)
+//	{
+//		m_bGotKeyFrameMain=true;
+//	}
+//    
+//	if (m_bGotKeyFrameMain && m_pVideoPacket)
+//	{
+//        
+//        if(nLen < 1000)
+//        {
+//            VIDEC_HEADER_EXT_RESET(m_pVideoPacket);
+//            VIDEC_HEADER_EXT_SET_CODEC_ID(m_pVideoPacket,VIDEC_CODEC_H264);
+//            VIDEC_HEADER_EXT_SET_DOUBLE_FIELD(m_pVideoPacket,0);
+//            VIDEC_HEADER_EXT_SET_KEYFRAME(m_pVideoPacket,(bKeyFrame?1:0));
+//            VIDEC_HEADER_EXT_SET_SEQUENCE(m_pVideoPacket,m_usVideoSequence++);
+//            VIDEC_HEADER_EXT_SET_TIMESTAMP(m_pVideoPacket,ulTimestamp);
+//            
+//            if (bKeyFrame)
+//            {
+//                VIDEC_HEADER_EXT_SET_ACTUAL_WIDTH(m_pVideoPacket,nWidth);
+//                VIDEC_HEADER_EXT_SET_ACTUAL_HEIGHT(m_pVideoPacket,nHeight);
+//                VIDEC_HEADER_EXT_SET_VIRTUAL_WIDTH(m_pVideoPacket,nWidth);
+//                VIDEC_HEADER_EXT_SET_VIRTUAL_HEIGHT(m_pVideoPacket,nHeight);
+//            }
+//            
+//            int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(m_pVideoPacket);
+//            
+//            VIDEC_HEADER_EXT_SET_MAIN_FRAME(m_pVideoPacket,1);
+//            
+//            VIDEC_KEY_SUBCONTRACTING_RESET(m_pVideoPacket+nHeaderLen);
+//            VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,1);
+//            VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen,1);
+//            
+//            int nSUBHeaderLen = VIDEC_KEY_SUBCONTRACTING_GET_LEN(m_pVideoPacket+nHeaderLen);
+//            
+//            memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData,nLen);
+//            m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, nLen+nHeaderLen+nSUBHeaderLen);
+//        }
+//        else
+//        {
+//            bool isbegin = true;
+//            int iLen = nLen;
+//            unsigned int uiVideoPacketSeek = 0;
+//            do
+//            {
+//                VIDEC_HEADER_EXT_RESET(m_pVideoPacket);
+//                VIDEC_HEADER_EXT_SET_CODEC_ID(m_pVideoPacket,VIDEC_CODEC_H264);
+//                VIDEC_HEADER_EXT_SET_DOUBLE_FIELD(m_pVideoPacket,0);
+//                VIDEC_HEADER_EXT_SET_KEYFRAME(m_pVideoPacket,(bKeyFrame?1:0));
+//                VIDEC_HEADER_EXT_SET_SEQUENCE(m_pVideoPacket,m_usVideoSequence++);
+//                VIDEC_HEADER_EXT_SET_TIMESTAMP(m_pVideoPacket,ulTimestamp);
+//                
+//                if (bKeyFrame)
+//                {
+//                    VIDEC_HEADER_EXT_SET_ACTUAL_WIDTH(m_pVideoPacket,nWidth);
+//                    VIDEC_HEADER_EXT_SET_ACTUAL_HEIGHT(m_pVideoPacket,nHeight);
+//                    VIDEC_HEADER_EXT_SET_VIRTUAL_WIDTH(m_pVideoPacket,nWidth);
+//                    VIDEC_HEADER_EXT_SET_VIRTUAL_HEIGHT(m_pVideoPacket,nHeight);
+//                }
+//                
+//                int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(m_pVideoPacket);
+//                
+//                VIDEC_HEADER_EXT_SET_MAIN_FRAME(m_pVideoPacket,1);
+//                
+//                VIDEC_KEY_SUBCONTRACTING_RESET(m_pVideoPacket+nHeaderLen);
+//                
+//                int nSUBHeaderLen = VIDEC_KEY_SUBCONTRACTING_GET_LEN(m_pVideoPacket+nHeaderLen);
+//                
+//                if(iLen > 1000)
+//                {
+//                    VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,isbegin?1:0);
+//                    VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen, 0);
+//                    
+//                    memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData + uiVideoPacketSeek,1000);
+//                    m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, 1000+nHeaderLen+nSUBHeaderLen);
+//                    
+//                    iLen -= 1000;
+//                    uiVideoPacketSeek += 1000;
+//                }
+//                else
+//                {
+//                    VIDEC_KEY_SUBCONTRACTING_SET_BEGING(m_pVideoPacket+nHeaderLen,isbegin?1:0);
+//                    VIDEC_KEY_SUBCONTRACTING_SET_END(m_pVideoPacket+nHeaderLen,1);
+//                    
+//                    memcpy(m_pVideoPacket+(nHeaderLen+nSUBHeaderLen),pData + uiVideoPacketSeek,iLen);
+//                    m_pMediaSender->SendVideo((unsigned char *)m_pVideoPacket, iLen+nHeaderLen+nSUBHeaderLen);
+//                    
+//                    iLen -= iLen;
+//                }
+//                isbegin = false;
+//            }
+//            while( iLen > 0 );
+//        }
+//	}
+//#else
     if (m_nFrameBufferLength<nLen+1024)
 	{
 		m_nFrameBufferLength=nLen+2048;

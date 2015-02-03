@@ -49,6 +49,9 @@ OpenRemoteUser::OpenRemoteUser()
     //m_pAudioplayback = CteateAudioplayback(p->GetSpeaker());
     //m_receiveAndPlayOpenAl = [[ReceiveAndPlayOpenAl alloc]init];
     //[m_receiveAndPlayOpenAl initOpenALMode:AMR_NBCODE];
+    
+    m_pH264RTPFrame = new H264RTPFrame(*this);
+    m_pH264RTPFrame->Open(97, 1100);
 }
 
 OpenRemoteUser::~OpenRemoteUser()
@@ -78,6 +81,12 @@ OpenRemoteUser::~OpenRemoteUser()
         ReleaseAudioplayback();
     m_pAudioplayback = NULL;
 #endif
+    
+    if(m_pH264RTPFrame)
+    {
+        m_pH264RTPFrame->Close();
+        delete m_pH264RTPFrame;
+    }
     
     m_IsOpenVideo = false;
     m_IsOpenAudio = false;
@@ -383,8 +392,22 @@ void OpenRemoteUser::OnNETEC_MediaReceiverCallbackVideoPacket(unsigned char*pDat
     {
         int nHeaderLen=VIDEC_HEADER_EXT_GET_LEN(pData);
         
-        if(m_pVideoPalyback)
-            m_pVideoPalyback->AddVideoData(pData+nHeaderLen, nLen-nHeaderLen);
+        if (m_pH264RTPFrame) {
+            m_pH264RTPFrame->OnRecvdRTPPacket(pData+nHeaderLen, nLen-nHeaderLen);
+        }
+        //if(m_pVideoPalyback)
+        //    m_pVideoPalyback->AddVideoData(pData+nHeaderLen, nLen-nHeaderLen);
     }
 #endif
+}
+
+void OpenRemoteUser::OnBaseRTPFrameCallbackRTPPacket(void*pPacketData,int nPacketLen)
+{
+    
+}
+
+void OpenRemoteUser::OnBaseRTPFrameCallbackFramePacket(void*pPacketData,int nPacketLen)
+{
+    if(m_pVideoPalyback)
+          m_pVideoPalyback->AddVideoData((unsigned char*)pPacketData, nPacketLen);
 }

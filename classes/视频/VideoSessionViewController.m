@@ -135,6 +135,10 @@ static NSUInteger kNumberOfPages = 3;
         frame.origin.y = 0;
         self.sessionInfoNavCtrl.view.frame = frame;
         [self.scrollView addSubview:self.sessionInfoNavCtrl.view];
+        self.sessionInfoNavCtrl.view.translatesAutoresizingMaskIntoConstraints=YES;
+        [self.sessionInfoNavCtrl.view removeConstraints:[self.sessionInfoNavCtrl.view constraints]];
+        [self.sessionInfoNavCtrl.view updateConstraints];
+        
         
     }
     else
@@ -145,6 +149,9 @@ static NSUInteger kNumberOfPages = 3;
             frame.origin.y = 0;
             self.sessionShowNavCtrl.view.frame = frame;
             [self.scrollView addSubview:self.sessionShowNavCtrl.view];
+            self.sessionInfoNavCtrl.view.translatesAutoresizingMaskIntoConstraints=YES;
+            [self.sessionInfoNavCtrl.view removeConstraints:[self.sessionInfoNavCtrl.view constraints]];
+            [self.sessionInfoNavCtrl.view updateConstraints];
         }
         else if (page==2)
         {
@@ -153,6 +160,9 @@ static NSUInteger kNumberOfPages = 3;
             frame.origin.y = 0;
             self.sessionChatNavCtrl.view.frame = frame;
             [self.scrollView addSubview:self.sessionChatNavCtrl.view];
+            self.sessionInfoNavCtrl.view.translatesAutoresizingMaskIntoConstraints=YES;
+            [self.sessionInfoNavCtrl.view removeConstraints:[self.sessionInfoNavCtrl.view constraints]];
+            [self.sessionInfoNavCtrl.view updateConstraints];
         }
 }
 
@@ -260,7 +270,7 @@ static NSUInteger kNumberOfPages = 3;
     
     [self.sessionShowViewController.navigationController.view  setFrame:fbounds];
     [self.sessionShowViewController.navigationController.view setBounds: fbounds];
-    
+
     [self.sessionShowViewController.navigationController.visibleViewController.view setFrame:fbounds];
 //    [self.sessionShowViewController  splitScreen];
     self.sessionShowViewController. sessionShowNavCtrl=sessionShowNavCtrl;

@@ -76,9 +76,15 @@ typedef enum SCREEN_TYPE
     bool isHiddenbtSplit;
     bool isHiddenInviteView;
 <<<<<<< HEAD
+<<<<<<< HEAD
     std::string strPeerUserID;
     std::string mstrFromUserID;
     std::string strSpeekUserID;
+=======
+    std::string mstrPeerUserID;
+    std::string mstrFromUserID;
+    std::string mstrSpeekUserID;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     std::string mstrPeerUserID;
     std::string mstrFromUserID;
@@ -97,6 +103,7 @@ typedef enum SCREEN_TYPE
     unsigned int uiRoomAudioType;
     unsigned int uiMyScreenCount;
 <<<<<<< HEAD
+<<<<<<< HEAD
     UIToolbar *toolbar;
     bool isSoundOff;
     UIButton *btSoundOffBbutton;
@@ -111,11 +118,16 @@ typedef enum SCREEN_TYPE
     UIButton *btFullScreen;
     UIButton *btManage;
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
      bool isSoundOff;
   
     bool fullScreen;
     SCREEN_TYPE fullScreenType;
  
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
     MBProgressHUD              *m_pMBProgressHUD;
     NSTimer                    *mNSTimer;

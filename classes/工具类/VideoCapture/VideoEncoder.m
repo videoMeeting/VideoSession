@@ -29,6 +29,7 @@
     
     _writer = [AVAssetWriter assetWriterWithURL:url fileType:AVFileTypeQuickTimeMovie error:nil];
 <<<<<<< HEAD
+<<<<<<< HEAD
     NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               AVVideoCodecH264, AVVideoCodecKey,
                               [NSNumber numberWithInt: width], AVVideoWidthKey,
@@ -39,6 +40,8 @@
                               nil];
     _writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:settings];
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
     //    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
     //                              AVVideoCodecH264, AVVideoCodecKey,
     //
@@ -73,6 +76,9 @@
                                    nil];
     
     _writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
     _writerInput.expectsMediaDataInRealTime = YES;
     [_writer addInput:_writerInput];

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of bbcc850... 打包更新
 //
 //  CameraServer.m
 //  Encoder Demo
@@ -11,7 +14,11 @@
 #import "AVEncoder.h"
 //#import "RTSPServer.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> parent of bbcc850... 打包更新
 =======
  
 >>>>>>> parent of bbcc850... 打包更新
@@ -48,7 +55,10 @@ static CameraCapture* theServer;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
   OpenLocalUser *mOpenLocalUser;
 
 - (void)setOpenLocalUser:( OpenLocalUser *)penLocalUser
@@ -56,6 +66,9 @@ static CameraCapture* theServer;
        mOpenLocalUser=penLocalUser;
 }
 
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
 - (void) startup
 {
@@ -81,6 +94,7 @@ static CameraCapture* theServer;
         
         // create an encoder
 <<<<<<< HEAD
+<<<<<<< HEAD
         _encoder = [AVEncoder encoderForHeight:320 andWidth:480];
         [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
 //            if (_rtsp != nil)
@@ -89,6 +103,8 @@ static CameraCapture* theServer;
 //                [_rtsp onVideoData:data time:pts];
 //            }
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
         _encoder = [AVEncoder encoderForHeight:240 andWidth:320];
         [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
             
@@ -110,6 +126,9 @@ static CameraCapture* theServer;
                
             }
  
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
             return 0;
         } onParams:^int(NSData *data) {
@@ -148,6 +167,10 @@ static CameraCapture* theServer;
     {
         [ _encoder shutdown];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        _encoder=nil;
+>>>>>>> parent of bbcc850... 打包更新
 =======
         _encoder=nil;
 >>>>>>> parent of bbcc850... 打包更新
@@ -161,6 +184,7 @@ static CameraCapture* theServer;
 }
 
 @end
+<<<<<<< HEAD
 =======
 //
 //  CameraServer.m
@@ -304,3 +328,5 @@ static CameraCapture* theServer;
 
 @end
 >>>>>>> parent of d4879e7... yingbianm
+=======
+>>>>>>> parent of bbcc850... 打包更新

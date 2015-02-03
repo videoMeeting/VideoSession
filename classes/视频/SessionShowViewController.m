@@ -28,6 +28,7 @@
 @implementation SessionShowViewController
  
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 @synthesize lable1;
 @synthesize lable2;
@@ -58,6 +59,8 @@
 @synthesize sessionInfoViewController;
 @synthesize pVideoViewController;
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
 // 
 //@synthesize lable1;
 //@synthesize lable2;
@@ -87,6 +90,9 @@
 //@synthesize sessionChatViewController;
 //@synthesize sessionInfoViewController;
 //@synthesize pVideoViewController;
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -125,7 +131,11 @@
         bIsEnterRoom = false;
         m_pOpenRemoteUser = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = "";
+=======
+        mstrSpeekUserID = "";
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = "";
 >>>>>>> parent of bbcc850... 打包更新
@@ -633,9 +643,15 @@
         else if(uiRoomAudioType == ROOM_AUDIO_SPEAK)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(!strSpeekUserID.empty())
             {
                 if(strSpeekUserID == pLoginServer->GetUserID())
+=======
+            if(!mstrSpeekUserID.empty())
+            {
+                if(mstrSpeekUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
             if(!mstrSpeekUserID.empty())
             {
@@ -647,7 +663,11 @@
                 else
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     [self User_OpenPeerAudio:strSpeekUserID];
+=======
+                    [self User_OpenPeerAudio:mstrSpeekUserID];
+>>>>>>> parent of bbcc850... 打包更新
 =======
                     [self User_OpenPeerAudio:mstrSpeekUserID];
 >>>>>>> parent of bbcc850... 打包更新
@@ -788,7 +808,11 @@
             pOpenLocalUser->SendAudioData();
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = strUserID;
+=======
+        mstrSpeekUserID = strUserID;
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = strUserID;
 >>>>>>> parent of bbcc850... 打包更新
@@ -808,7 +832,11 @@
             pOpenLocalUser->CloseAudio();
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = "";
+=======
+        mstrSpeekUserID = "";
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = "";
 >>>>>>> parent of bbcc850... 打包更新
@@ -924,7 +952,11 @@
             pOpenRemoteUser->StartPeerAudioData(parstrPeerUserID, ulPeerAudioId);
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = parstrPeerUserID;
+=======
+        mstrSpeekUserID = parstrPeerUserID;
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = parstrPeerUserID;
 >>>>>>> parent of bbcc850... 打包更新
@@ -952,7 +984,11 @@
         }
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = "";
+=======
+        mstrSpeekUserID = "";
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = "";
 >>>>>>> parent of bbcc850... 打包更新
@@ -2173,7 +2209,11 @@
     
     if(pLoginServer->ISChairman())
 <<<<<<< HEAD
+<<<<<<< HEAD
         strSpeekUserID = pLoginServer->GetUserID();
+=======
+        mstrSpeekUserID = pLoginServer->GetUserID();
+>>>>>>> parent of bbcc850... 打包更新
 =======
         mstrSpeekUserID = pLoginServer->GetUserID();
 >>>>>>> parent of bbcc850... 打包更新
@@ -2353,7 +2393,11 @@
         return;
     mstrFromUserID = strFromUserID;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserId;
+=======
+    mstrPeerUserID = strUserId;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserId;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2367,7 +2411,11 @@
         return;
     mstrFromUserID = strFromUserID;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserId;
+=======
+    mstrPeerUserID = strUserId;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserId;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2380,7 +2428,11 @@
         return;
     mstrFromUserID = strFromUserID;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserId;
+=======
+    mstrPeerUserID = strUserId;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserId;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2393,7 +2445,11 @@
         return;
     mstrFromUserID = strFromUserID;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserId;
+=======
+    mstrPeerUserID = strUserId;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserId;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2524,7 +2580,11 @@
     if(!bIsEnterRoom)
         return;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserID;
+=======
+    mstrPeerUserID = strUserID;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserID;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2553,7 +2613,11 @@
     
     strUserMsg = ulUserMsg;
 <<<<<<< HEAD
+<<<<<<< HEAD
     strPeerUserID = strUserID;
+=======
+    mstrPeerUserID = strUserID;
+>>>>>>> parent of bbcc850... 打包更新
 =======
     mstrPeerUserID = strUserID;
 >>>>>>> parent of bbcc850... 打包更新
@@ -2563,7 +2627,11 @@
 -(void) OnForTheFloor:(id)mid
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     NSString *UserID=[[[NSString alloc]initWithCString:strPeerUserID.c_str() encoding: NSUTF8StringEncoding] autorelease];
+=======
+    NSString *UserID=[[[NSString alloc]initWithCString:mstrPeerUserID.c_str() encoding: NSUTF8StringEncoding] autorelease];
+>>>>>>> parent of bbcc850... 打包更新
 =======
     NSString *UserID=[[[NSString alloc]initWithCString:mstrPeerUserID.c_str() encoding: NSUTF8StringEncoding] autorelease];
 >>>>>>> parent of bbcc850... 打包更新
@@ -2583,7 +2651,11 @@
         {
             [self User_CloseAllAudio];
 <<<<<<< HEAD
+<<<<<<< HEAD
             [self User_OpenPeerAudio:strPeerUserID];
+=======
+            [self User_OpenPeerAudio:mstrPeerUserID];
+>>>>>>> parent of bbcc850... 打包更新
 =======
             [self User_OpenPeerAudio:mstrPeerUserID];
 >>>>>>> parent of bbcc850... 打包更新
@@ -2633,7 +2705,11 @@
 {
     NSString* info = [NSString stringWithCString:strUserMsg.c_str() encoding:NSUTF8StringEncoding];
 <<<<<<< HEAD
+<<<<<<< HEAD
     NSString* strUserName = [NSString stringWithCString:strPeerUserID.c_str() encoding:NSUTF8StringEncoding];
+=======
+    NSString* strUserName = [NSString stringWithCString:mstrPeerUserID.c_str() encoding:NSUTF8StringEncoding];
+>>>>>>> parent of bbcc850... 打包更新
 =======
     NSString* strUserName = [NSString stringWithCString:mstrPeerUserID.c_str() encoding:NSUTF8StringEncoding];
 >>>>>>> parent of bbcc850... 打包更新
@@ -2786,7 +2862,11 @@
 -(void) OpenUserVideo:(id)mid
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID.empty())
+=======
+    if(mstrPeerUserID.empty())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID.empty())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2807,7 +2887,11 @@
 -(void)Room_OpenVideo_Push
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2843,15 +2927,21 @@
     
     unsigned int uiScreen = m_uiScreenControl;
 <<<<<<< HEAD
+<<<<<<< HEAD
     iOSGLView* pView = [self GetWindow:strPeerUserID uiScreen:uiScreen IsSet:true];
     if(pView!=nil)
     {
         [self User_OpenPeerVideo:strPeerUserID pView:pView uiScreen:uiScreen bIsBroadcast:true IsSendCommand:false];
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
     iOSGLView* pView = [self GetWindow:mstrPeerUserID uiScreen:uiScreen IsSet:true];
     if(pView!=nil)
     {
         [self User_OpenPeerVideo:mstrPeerUserID pView:pView uiScreen:uiScreen bIsBroadcast:true IsSendCommand:false];
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
     }
     
@@ -2862,7 +2952,11 @@
 -(void) CloseUserVideo:(id)mid
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID.empty())
+=======
+    if(mstrPeerUserID.empty())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID.empty())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2883,7 +2977,11 @@
 -(void)Room_CloseVideo_Push
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(pLoginServer->ISChairman()&&strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(pLoginServer->ISChairman()&&mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(pLoginServer->ISChairman()&&mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2894,7 +2992,11 @@
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2918,7 +3020,11 @@
         
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         [self CloseWindow:strPeerUserID];
+=======
+        [self CloseWindow:mstrPeerUserID];
+>>>>>>> parent of bbcc850... 打包更新
 =======
         [self CloseWindow:mstrPeerUserID];
 >>>>>>> parent of bbcc850... 打包更新
@@ -2930,7 +3036,11 @@
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     [self User_ClosePeerVideo:strPeerUserID IsSendCommand:false bIsBroadcast:false];
+=======
+    [self User_ClosePeerVideo:mstrPeerUserID IsSendCommand:false bIsBroadcast:false];
+>>>>>>> parent of bbcc850... 打包更新
 =======
     [self User_ClosePeerVideo:mstrPeerUserID IsSendCommand:false bIsBroadcast:false];
 >>>>>>> parent of bbcc850... 打包更新
@@ -2942,7 +3052,11 @@
 -(void)Room_OpenVideo_Room
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -2976,7 +3090,11 @@
 -(void)Room_CloseVideo_Room
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -3015,7 +3133,11 @@
 -(void) OpenUserAudio:(id)mid
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID.empty())
+=======
+    if(mstrPeerUserID.empty())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID.empty())
 >>>>>>> parent of bbcc850... 打包更新
@@ -3028,7 +3150,11 @@
 -(void) CloseUserAudio:(id)mid
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID.empty())
+=======
+    if(mstrPeerUserID.empty())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID.empty())
 >>>>>>> parent of bbcc850... 打包更新
@@ -3042,7 +3168,11 @@
 -(void)Room_OpenAudio_Discuss_Speak
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(strPeerUserID == pLoginServer->GetUserID())
+=======
+    if(mstrPeerUserID == pLoginServer->GetUserID())
+>>>>>>> parent of bbcc850... 打包更新
 =======
     if(mstrPeerUserID == pLoginServer->GetUserID())
 >>>>>>> parent of bbcc850... 打包更新
@@ -3060,9 +3190,15 @@
     
     //unsigned long ulPeerVideoId = pLoginServer->GetPeerUserVideoId(strPeerUserID);
 <<<<<<< HEAD
+<<<<<<< HEAD
     unsigned long ulPeerAudioId = pLoginServer->GetPeerUserAudioId(strPeerUserID);
     OpenRemoteUser* pOpenRemoteUser = NULL;
     OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(strPeerUserID);
+=======
+    unsigned long ulPeerAudioId = pLoginServer->GetPeerUserAudioId(mstrPeerUserID);
+    OpenRemoteUser* pOpenRemoteUser = NULL;
+    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(mstrPeerUserID);
+>>>>>>> parent of bbcc850... 打包更新
 =======
     unsigned long ulPeerAudioId = pLoginServer->GetPeerUserAudioId(mstrPeerUserID);
     OpenRemoteUser* pOpenRemoteUser = NULL;
@@ -3079,7 +3215,11 @@
         pOpenRemoteUser = new OpenRemoteUser;
         pOpenRemoteUser->ConnectMediaServer(pLoginServer->GetServerIp(), pLoginServer->GetServerPort());
 <<<<<<< HEAD
+<<<<<<< HEAD
         OpenRemoteUserMap[strPeerUserID] = pOpenRemoteUser;
+=======
+        OpenRemoteUserMap[mstrPeerUserID] = pOpenRemoteUser;
+>>>>>>> parent of bbcc850... 打包更新
 =======
         OpenRemoteUserMap[mstrPeerUserID] = pOpenRemoteUser;
 >>>>>>> parent of bbcc850... 打包更新
@@ -3089,7 +3229,11 @@
         pOpenRemoteUser->OpenAudio(AMR_NBCODE);
     if(!pOpenRemoteUser->IsStartReceiverAudio())
 <<<<<<< HEAD
+<<<<<<< HEAD
         pOpenRemoteUser->StartPeerAudioData(strPeerUserID, ulPeerAudioId);
+=======
+        pOpenRemoteUser->StartPeerAudioData(mstrPeerUserID, ulPeerAudioId);
+>>>>>>> parent of bbcc850... 打包更新
 =======
         pOpenRemoteUser->StartPeerAudioData(mstrPeerUserID, ulPeerAudioId);
 >>>>>>> parent of bbcc850... 打包更新
@@ -3101,15 +3245,21 @@
 -(void)Room_CloseAudio_Discuss_Speak
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if(pLoginServer->ISChairman()&&strPeerUserID == pLoginServer->GetUserID())
         return;
     
     if(strPeerUserID == pLoginServer->GetUserID())
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
     if(pLoginServer->ISChairman()&&mstrPeerUserID == pLoginServer->GetUserID())
         return;
     
     if(mstrPeerUserID == pLoginServer->GetUserID())
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
     {
         pOpenLocalUser->ClearOpenMeAudioUser();
@@ -3121,7 +3271,11 @@
     
     OpenRemoteUser* pOpenRemoteUser = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
     OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(strPeerUserID);
+=======
+    OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(mstrPeerUserID);
+>>>>>>> parent of bbcc850... 打包更新
 =======
     OPENREMOTEUSERMAP::iterator iter = OpenRemoteUserMap.find(mstrPeerUserID);
 >>>>>>> parent of bbcc850... 打包更新

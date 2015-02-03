@@ -14,6 +14,7 @@
 #import "AVFoundation/AVCaptureVideoPreviewLayer.h"
 #import "AVFoundation/AVMediaFormat.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 @interface CameraCapture : NSObject
 
@@ -21,6 +22,8 @@
 - (void) startup;
 - (void) shutdown;
 =======
+=======
+>>>>>>> parent of bbcc850... 打包更新
 #include "OpenLocalUser.h"
 @protocol CameraCaptureDelegate
 -(void)VideoDataOutputFrame:(NSData *)pimageFrame framewidth:(int)framewidth framehight:(int)framehight;
@@ -35,6 +38,9 @@
 - (void) startup;
 - (void) shutdown;
 - (void)setOpenLocalUser:( OpenLocalUser *)penLocalUser;
+<<<<<<< HEAD
+>>>>>>> parent of bbcc850... 打包更新
+=======
 >>>>>>> parent of bbcc850... 打包更新
 - (AVCaptureVideoPreviewLayer*) getPreviewLayer;
 

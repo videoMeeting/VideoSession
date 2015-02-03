@@ -129,7 +129,6 @@ static CameraCapture* theServer;
     if (_encoder)
     {
         [ _encoder shutdown];
-        _encoder=nil;
     }
 }
  

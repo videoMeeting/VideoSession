@@ -48,7 +48,7 @@
     NSDictionary *codecSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSNumber numberWithInt:3],AVVideoMaxKeyFrameIntervalKey,
                                    AVVideoProfileLevelH264Baseline31,AVVideoProfileLevelKey,
-                                   [NSNumber numberWithDouble:50.0*1024.0], AVVideoAverageBitRateKey,
+                                   [NSNumber numberWithDouble:500.0*1024.0], AVVideoAverageBitRateKey,
                                    videoCleanApertureSettings, AVVideoCleanApertureKey,
                                    nil];
     

@@ -9,7 +9,7 @@
 #import "CameraCapture.h"
 #import "AVEncoder.h"
 //#import "RTSPServer.h"
-
+ 
 static CameraCapture* theServer;
 
 @interface CameraCapture  () <AVCaptureVideoDataOutputSampleBufferDelegate>
@@ -42,6 +42,13 @@ static CameraCapture* theServer;
     return theServer;
 }
 
+  OpenLocalUser *mOpenLocalUser;
+
+- (void)setOpenLocalUser:( OpenLocalUser *)penLocalUser
+{
+       mOpenLocalUser=penLocalUser;
+}
+
 - (void) startup
 {
     if (_session == nil)
@@ -65,13 +72,27 @@ static CameraCapture* theServer;
         [_session addOutput:_output];
         
         // create an encoder
-        _encoder = [AVEncoder encoderForHeight:320 andWidth:480];
+        _encoder = [AVEncoder encoderForHeight:240 andWidth:320];
         [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
-//            if (_rtsp != nil)
-//            {
-//                _rtsp.bitrate = _encoder.bitspersecond;
-//                [_rtsp onVideoData:data time:pts];
-//            }
+            
+            if (mOpenLocalUser) {
+           int nNALUs = (int)[data count];
+                for (int i = 0; i < nNALUs; i++)
+                {
+                    NSData* nalu = [data objectAtIndex:i];
+                    bool iskey=NO;
+                    unsigned char* pSource = (unsigned char*)[nalu bytes];
+                    if ((pSource[0] & 0x1f) == 5)
+                    {
+                        iskey=YES;
+                    }
+                    mOpenLocalUser->On_MediaReceiverCallbackVideo(pSource , [nalu length], iskey, 320, 240);
+                    
+                }
+                
+               
+            }
+ 
             return 0;
         } onParams:^int(NSData *data) {
 //            _rtsp = [RTSPServer setupListener:data];
@@ -108,6 +129,7 @@ static CameraCapture* theServer;
     if (_encoder)
     {
         [ _encoder shutdown];
+        _encoder=nil;
     }
 }
  

@@ -13,12 +13,20 @@
 #import "AVFoundation/AVCaptureInput.h"
 #import "AVFoundation/AVCaptureVideoPreviewLayer.h"
 #import "AVFoundation/AVMediaFormat.h"
-
+#include "OpenLocalUser.h"
+@protocol CameraCaptureDelegate
+-(void)VideoDataOutputFrame:(NSData *)pimageFrame framewidth:(int)framewidth framehight:(int)framehight;
+@end
 @interface CameraCapture : NSObject
 
+{
+    OpenLocalUser *mOpenLocalUser;
+}
 + (CameraCapture*) shareCameraCapture;
+@property id<CameraCaptureDelegate>  delegate;
 - (void) startup;
 - (void) shutdown;
+- (void)setOpenLocalUser:( OpenLocalUser *)penLocalUser;
 - (AVCaptureVideoPreviewLayer*) getPreviewLayer;
 
 @end

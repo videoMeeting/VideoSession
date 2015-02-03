@@ -12,7 +12,6 @@
 #include "VIDEC/VIDEC_Header.h"
 #include "NETEC/NETEC_Setting.h"
 #include <sys/time.h>
-#import "CameraCapture.h"
 
 typedef enum {
 	VIDEC_CODEC_H261=0,		//unsupport
@@ -65,7 +64,7 @@ OpenLocalUser::OpenLocalUser()
 , m_pVideoView(NULL)
 , m_strUserID("")
 , m_pAudioCapture(NULL)
-, m_CameraCapture(NULL)
+, m_pVideoCapture(NULL)
 , m_IsSendVideoData(false)
 , m_IsSendAudioData(false)
 , m_IsOpenVideo(false)
@@ -74,8 +73,7 @@ OpenLocalUser::OpenLocalUser()
     NETEC_Setting::SetVideoProtocolType(NETEC_Setting::PT_TCP);
     NETEC_Setting::SetAudioProtocolType(NETEC_Setting::PT_TCP);
     //m_pAudioCapture = CteateAudioCapture(this);
-//    m_pVideoCapture = CteateVideoCapture(this);
-//      m_CameraCapture  = [CameraCapture shareCameraCapture];
+    m_pVideoCapture = CteateVideoCapture(this);
 #ifdef USER_SUBCONTRACTING
     m_pVideoPacket=(char*)malloc(m_nFrameBufferLength);
     if (m_pVideoPacket==NULL)
@@ -93,9 +91,9 @@ OpenLocalUser::~OpenLocalUser()
     m_pAudioCapture = NULL;
 #endif
     
-//    if(m_pVideoCapture)
-//        ReleaseVideoCapture();
-//    m_pVideoCapture = NULL;
+    if(m_pVideoCapture)
+        ReleaseVideoCapture();
+    m_pVideoCapture = NULL;
     
     m_IsSendVideoData = false;
     m_IsSendAudioData = false;
@@ -120,40 +118,31 @@ void OpenLocalUser::ReleaseMediaSever()
 
 bool OpenLocalUser::OpenVideo(void* pView, unsigned long ulUserVideoId, unsigned int niWidth, unsigned int niHeight, unsigned int uiBitrate, unsigned int uiFramerate)
 {
-    if( ulUserVideoId == 0)
-        return false;//m_pVideoCapture == NULL ||
+    if(m_pVideoCapture == NULL || ulUserVideoId == 0)
+        return false;
     
     m_ulLocalVideoID = ulUserVideoId;
     m_IsOpenVideo = true;
-    [[CameraCapture shareCameraCapture]setOpenLocalUser:this];
-    [[CameraCapture shareCameraCapture]startup];
-    AVCaptureVideoPreviewLayer* preview = [[CameraCapture shareCameraCapture] getPreviewLayer];
-    [preview removeFromSuperlayer];
-    
-    preview.frame = ((UIView*)pView).bounds;
-    [[preview connection] setVideoOrientation:UIInterfaceOrientationPortrait];
-    
-    [((UIView*)pView).layer addSublayer:preview];
-//    m_pVideoCapture->SetLocalVideoWindow(pView);
-//    m_pVideoCapture->SetResolution(niWidth, niHeight);
-//    m_pVideoCapture->SetBitRate(uiBitrate);
-//    m_pVideoCapture->SetVideoFps(uiFramerate);
-//    m_pVideoCapture->StartCapture();
-//    m_pVideoCapture->StartEncoding();
+    m_pVideoCapture->SetLocalVideoWindow(pView);
+    m_pVideoCapture->SetResolution(niWidth, niHeight);
+    m_pVideoCapture->SetBitRate(uiBitrate);
+    m_pVideoCapture->SetVideoFps(uiFramerate);
+    m_pVideoCapture->StartCapture();
+    m_pVideoCapture->StartEncoding();
     return true;
 }
 
 bool OpenLocalUser::setVideoWindow(UIView*preview)
 {
-//    m_pVideoCapture->setPreview(preview);
+    m_pVideoCapture->setPreview(preview);
     return  YES;
 }
 
 void OpenLocalUser::SetFrontAndRearCamera(bool isFront)
 {
-//    if(m_pVideoCapture == NULL)
-//        return;
-//    m_pVideoCapture->SetFrontAndRearCamera(isFront);
+    if(m_pVideoCapture == NULL)
+        return;
+    m_pVideoCapture->SetFrontAndRearCamera(isFront);
 }
 
 bool OpenLocalUser::SendVideoData()
@@ -161,28 +150,26 @@ bool OpenLocalUser::SendVideoData()
     if(!StartVideo())
         return false;
     m_IsSendVideoData = true;
-//    m_pVideoCapture->StartEncodingData();
+    m_pVideoCapture->StartEncodingData();
     return true;
 }
 
 void OpenLocalUser::StopSendVideoData()
 {
-//    if(m_pVideoCapture == NULL)
-//        return;
+    if(m_pVideoCapture == NULL)
+        return;
     m_IsSendVideoData = false;
-//    m_pVideoCapture->StopEncodeingData();
-        [[CameraCapture shareCameraCapture] shutdown];
+    m_pVideoCapture->StopEncodeingData();
     StopVideo();
 }
 
 void OpenLocalUser::CloseVideo()
 {
-//    if(m_pVideoCapture == NULL)
-//        return;
-    [[CameraCapture shareCameraCapture]shutdown];
-//    m_IsOpenVideo = false;
-//    m_pVideoCapture->StopCapture();
-//    m_pVideoCapture->StopEncoding();
+    if(m_pVideoCapture == NULL)
+        return;
+    m_IsOpenVideo = false;
+    m_pVideoCapture->StopCapture();
+    m_pVideoCapture->StopEncoding();
     StopVideo();
 }
 
@@ -218,7 +205,7 @@ void OpenLocalUser::On_MediaReceiverCallbackAudio(unsigned char*pData,int nLen)
 
 void OpenLocalUser::On_MediaReceiverCallbackVideo(unsigned char*pData,int nLen, bool bKeyFrame, int nWidth, int nHeight)
 {
-    if(pData==NULL || nLen<=0 )
+    if(pData==NULL || nLen<=0 || m_pVideoCapture==NULL)
         return;
     if(m_IsSendVideoData)
         ProcessVideoFrame((char*)pData, nLen, bKeyFrame, TimeGetTimestamp(), nWidth, nHeight);

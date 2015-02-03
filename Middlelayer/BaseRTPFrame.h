@@ -68,16 +68,16 @@ public:
 	BaseRTPFrame(BaseRTPFrameCallback&rCallback);
 	virtual~BaseRTPFrame(void);
 public:
-    int Open(int nPayloadType,int nMaxRTPFrameSize,int nHeaderMargin=0);
-    void Close(void);
-    void SendFrame(const unsigned char*pFrameData,int nFrameLen,int nWidth,int nHeight,int nKeyFrame,unsigned long ulTimestamp);
-	 void SendFrameHeader(unsigned char*pRTPPacket,int nPacketLen);
+	virtual int Open(int nPayloadType,int nMaxRTPFrameSize,int nHeaderMargin=0);
+	virtual void Close(void);
+	virtual void SendFrame(const unsigned char*pFrameData,int nFrameLen,int nWidth,int nHeight,int nKeyFrame,unsigned long ulTimestamp);
+	virtual void SendFrameHeader(unsigned char*pRTPPacket,int nPacketLen);
 	virtual void DoSendFrame(const unsigned char*pFrameData,int nFrameLen,int nWidth,int nHeight,int nKeyFrame,unsigned long ulTimestamp)=0;
-	 int GetFrame(unsigned char*pFrameBuf,int nBufLen);
-	 void OnRecvdRTPPacket(void*pPacketData,int nPacketLen);
-	 bool DoSendData(void);
+	virtual int GetFrame(unsigned char*pFrameBuf,int nBufLen);
+	virtual void OnRecvdRTPPacket(void*pPacketData,int nPacketLen);
+	virtual bool DoSendData(void);
 
-	 int GetFrameTestOnly(unsigned char*pFrameBuf,int nBufLen);
+	virtual int GetFrameTestOnly(unsigned char*pFrameBuf,int nBufLen);
 protected:
 	virtual void FlushRTPPackets(void);
 	virtual int CalculateFrameSize(void);

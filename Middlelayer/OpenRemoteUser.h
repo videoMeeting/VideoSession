@@ -15,11 +15,9 @@
 #include "VideoLibrary/VideoLibrary.h"
 #import  "ReceiveAndPlayOpenAl.h"
 #include "LoginServer.h"
-#include "H264RTPFrame.h"
 
 class OpenRemoteUser
 : public NETEC_MediaReceiverCallback
-, public BaseRTPFrameCallback
 {
 public:
     OpenRemoteUser();
@@ -54,9 +52,6 @@ public:
 public:
 	virtual void OnNETEC_MediaReceiverCallbackAudioPacket(unsigned char*pData,int nLen);
 	virtual void OnNETEC_MediaReceiverCallbackVideoPacket(unsigned char*pData,int nLen);
-    
-    virtual void OnBaseRTPFrameCallbackRTPPacket(void*pPacketData,int nPacketLen);
-    virtual void OnBaseRTPFrameCallbackFramePacket(void*pPacketData,int nPacketLen);
 private:
 	bool CreateScreenReceiver();
 	bool StartVideoReceiver();
@@ -95,7 +90,6 @@ private:
     bool                    m_IsReceiverAudio;
     std::string             m_PeerUserVideoID;
     std::string             m_PeerUserAudioID;
-    H264RTPFrame*           m_pH264RTPFrame;
 };
 
 #endif /* defined(__VideoSession__OpenRemoteUser__) */
